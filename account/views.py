@@ -6,6 +6,7 @@ def signup(request):
 
 def signin(request):
     return HttpResponse("Sign in!!")
-    
+
 def verify(request):
     return HttpResponse("verify in!!")
+    #
