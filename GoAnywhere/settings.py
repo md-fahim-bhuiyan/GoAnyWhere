@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-$%^p(8i%!h3u!yt&d#@r+vb#_y-ik#oa7w9(k_u&4s#*@@cbh+
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL ='account.User'
+# AUTH_USER_MODEL ='account.User'
 
 INSTALLED_APPS = [
     'django.contrib.admin',

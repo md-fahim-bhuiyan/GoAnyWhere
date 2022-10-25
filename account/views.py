@@ -9,4 +9,3 @@ def signin(request):
 
 def verify(request):
     return HttpResponse("verify in!!")
-    #
