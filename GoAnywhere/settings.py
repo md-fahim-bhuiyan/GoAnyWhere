@@ -1,4 +1,5 @@
 from datetime import timedelta
+import os
 
 from pathlib import Path
 from unittest.mock import DEFAULT
@@ -43,7 +44,7 @@ ROOT_URLCONF = 'GoAnywhere.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
