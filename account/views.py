@@ -1,11 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
-def signup(request):
-    return HttpResponse("SignUp!!")
+from account.serializers import UserRegistrationserializer
 
-def signin(request):
-    return HttpResponse("Sign in!!")
-
-def verify(request):
-    return HttpResponse("verify in!!")
+class UserRegistrationView(APIView):
+    def post(self, request, format=None):
+        serializer = UserRegistrationserializer(data = request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.save()
+            return Response({'msg':'Registration Success'})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
