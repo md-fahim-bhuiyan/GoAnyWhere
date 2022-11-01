@@ -76,11 +76,8 @@ class SendPasswordResetEmailView(APIView):
     serializer.is_valid(raise_exception=True)
     return Response({'msg':'Password Reset link send. Please check your Email'}, status=status.HTTP_200_OK)
 
-
-
-# def signup(request):
-#     # response = requests.get("http://127.0.0.1:8000/api/user/register/").json()
-#     return render(request, 'registation.html')
-
 def signup(request):
     return render(request, 'registation.html')
+
+def login(request):
+    return render(request, 'login.html')
