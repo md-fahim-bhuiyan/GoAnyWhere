@@ -136,7 +136,7 @@ form .input_button {
                         <h1>Login Your Account</h1>
                     </div>
                     <div class="form">
-                        <form action="done/" method="post">
+                        <form action="login" method="POST">
                             {% csrf_token %}
                             <input type="email" name="email" id="email" placeholder="Email" class="email"> <br>
                             <input type="password" name="password" id="password" placeholder="Password"> <br>
@@ -144,7 +144,7 @@ form .input_button {
                         </form>
                     </div>
                     <div class="new">
-                        <a href="{%url 'signup' %}"><h2>Create An Account</h2></a> 
+                        <a href="{%url 'register' %}"><h2>Create An Account</h2></a> 
                     </div>
                     <div class="forgot_password">
                         <a href="http://"><h4>Forgot Password?</h4> </a> 

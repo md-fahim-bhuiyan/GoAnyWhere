@@ -22,3 +22,4 @@ class UserModelAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 admin.site.register(User, UserModelAdmin)
+

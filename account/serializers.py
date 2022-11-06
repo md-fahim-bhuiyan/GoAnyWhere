@@ -3,7 +3,7 @@ from account.models import User
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class UserRegistrationserializer(serializers.ModelSerializer):
     password2 = serializers.CharField(
@@ -90,3 +90,12 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
             return attrs
         else:
             raise serializers.ValidationError('You are not a Registered User')
+
+
+class UserLogoutSerializer(serializers.Serializer):
+    
+    def validate(self, attrs):
+        return attrs
+
+    def save(self, **kwargs):
+        User(self.token).blacklist()

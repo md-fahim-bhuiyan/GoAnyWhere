@@ -2,7 +2,7 @@ from django.db import models
 
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
-# custom user manager
+# # custom user manager
 
 
 class UserManager(BaseUserManager):
@@ -72,3 +72,11 @@ class User(AbstractBaseUser):
 
     class Meta:
         db_table = "User"
+
+
+class Destination(models.Model):
+    id = models.IntegerField(primary_key=True)
+    country = models.CharField(max_length=20)
+    img1 = models.ImageField(upload_to='pics')
+    img2 = models.ImageField(upload_to='pics')
+    number = models.IntegerField(default=2)
