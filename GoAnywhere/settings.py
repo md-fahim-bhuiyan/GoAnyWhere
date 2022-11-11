@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'flight',
     'payment',
+    'import_export',
 
 
 ]

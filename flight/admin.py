@@ -1,8 +1,10 @@
 from django.contrib import admin
-
-from flight.models import Destination
-from flight.models import Detailed_desc
-
-# Register your models here.
-admin.site.register(Destination)
-admin.site.register(Detailed_desc)
+ 
+from .models import *
+ 
+admin.site.register(Place)
+admin.site.register(Week)
+admin.site.register(Flight)
+admin.site.register(Passenger)
+admin.site.register(User)
+admin.site.register(Ticket)
