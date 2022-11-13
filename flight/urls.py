@@ -2,7 +2,11 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path("", views.index, name="index"),
+<<<<<<< HEAD
         path("query/places/<str:q>", views.query, name="query"),
+=======
+    path("query/places/<str:q>", views.query, name="query"),
+>>>>>>> 534cd6fe38600b706cf2d4757b23ef7924740d74
     path("flight", views.flight, name="flight"),
     path("review", views.review, name="review"),
     path("flight/ticket/book", views.book, name="book"),
@@ -12,4 +16,8 @@ urlpatterns = [
     path('flight/bookings', views.bookings, name="bookings"),
     path('flight/ticket/cancel', views.cancel_ticket, name="cancelticket"),
     path('flight/ticket/resume', views.resume_booking, name="resumebooking"),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 534cd6fe38600b706cf2d4757b23ef7924740d74
 ]
