@@ -2,8 +2,7 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path("", views.index, name="index"),
-    path("logout", views.logout_view, name="logout"),
-    path("query/places/<str:q>", views.query, name="query"),
+        path("query/places/<str:q>", views.query, name="query"),
     path("flight", views.flight, name="flight"),
     path("review", views.review, name="review"),
     path("flight/ticket/book", views.book, name="book"),
@@ -13,8 +12,4 @@ urlpatterns = [
     path('flight/bookings', views.bookings, name="bookings"),
     path('flight/ticket/cancel', views.cancel_ticket, name="cancelticket"),
     path('flight/ticket/resume', views.resume_booking, name="resumebooking"),
-     path('contact', views.contact, name="contact"),
-    path('privacy-policy', views.privacy_policy, name="privacypolicy"),
-    path('terms-and-conditions', views.terms_and_conditions, name="termsandconditions"),
-    path('about-us', views.about_us, name="aboutus"),
 ]
