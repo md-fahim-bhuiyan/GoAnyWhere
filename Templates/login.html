@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
     <title>Login</title>
     <style>
         * {
@@ -137,11 +138,10 @@ form .input_button {
                     <div class="form">
                         <form action="login" method="POST">
                             {% csrf_token %}
-                            <input type="username" name="username" id="username" placeholder="Username" class="username"> <br>
+                            <input type="email" name="email" id="email" placeholder="Email" class="email"> <br>
                             <input type="password" name="password" id="password" placeholder="Password"> <br>
                             <input type="submit" style="width: 280px;" class="input_button" value="Login">
                         </form>
-                        <span><small>{{message}}</small></span>
                     </div>
                     <div class="new">
                         <a href="{%url 'register' %}"><h2>Create An Account</h2></a> 

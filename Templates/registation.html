@@ -24,7 +24,7 @@ body
   }
 
 .frame {
-    height: 700px;
+    height: 575px;
     width: 1000px;
     background:
     linear-gradient(
@@ -118,7 +118,7 @@ form .input_button
             <div class="part">
                 <div class="part_a">
                     {% load static %}
-                    <img src="{% static '/Registation.jpg' %}" alt="Registation" width="450px" height=" 700px">
+                    <img src="{% static '/Registation.jpg' %}" alt="Registation" width="450px" height=" 575px">
                 </div>
                 <div class="part_b">
                     <div class="caption">
@@ -126,14 +126,12 @@ form .input_button
                         <h3>Create An Account</h3>
                     </div>
                     <div class="form">
-                        <form action='register/' method="post">
+                        <form action="done" method="post">
                             {% csrf_token %}
                             <input type="email" name="email" id="email" placeholder="Email" class="email"> <br>
-                            <input type="text" name="username" id="username" placeholder="Username"> <br>
-                            <input type="text" name="firstname" id="firstname" placeholder="First Name"> <br>
-                            <input type="text" name="lastname" id="lastname" placeholder="Last Name"> <br>
+                            <input type="text" name="name" id="name" placeholder="Full Name"> <br>
                             <input type="password" name="password" id="password" placeholder="Password"> <br>
-                            <input type="password" name="confirmation" id="confirmation" placeholder="Confirm  Password"> <br>
+                            <input type="password" name="password2" id="password2" placeholder="Confirm  Password"> <br>
                             <input type="checkbox" name="tc" id="tc" class="tc">I Accept All Terms & Conditions <br>
                             <input type="submit" style="width: 280px;" class="input_button" value="Register">
                         </form>
@@ -151,72 +149,3 @@ form .input_button
 </body>
 
 </html>
-
-<!-- {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>
-            Registation | GoAnywhere
-        </title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="{% static 'css/styles2.css' %}" rel="stylesheet">
-        <link rel="icon" type="image/ico" href="/static/img/favicon.ico">
-        <script type"text/javascript" src="{% static 'js/signup.js' %}"></script>
-    </head>
-    <body>
-        <div class="container">
-            <div class="user-box" style="margin-top: 6vh;">
-                <div>
-                    <center>
-                        <img src="{% static 'img/icon_logo.png' %}" height="35em" style="margin-bottom: 2vh;">
-                        <h3>Sign up for Flight</h2><br>
-                    </center>
-                </div>
-            
-                <form action="{% url 'register' %}" method="post" id="signin-form" style="width: 100%;margin-bottom: 5vh;"  enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <div class="form-row align-items-center">
-                        <div class="col-sm-6 my-1">
-                            <input class="form-control inp fname" type="text" name="firstname" placeholder="First Name *" autocomplete="off" autofocus>
-                            <span class="star small"></span>
-                        </div>
-                        <div class="col-sm-6 my-1">
-                            <input class="form-control inp lname" type="text" name="lastname" placeholder="Last Name *" autocomplete="off">
-                            <span class="star small"></span>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control inp usrname" type="text" name="username" placeholder="Username *" autocomplete="off">
-                        <span class="star small">{{message}}</span>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control inp email" type="email" name="email" placeholder="Email Address *" autocomplete="off">
-                        <span class="star small"></span>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control inp pswd" type="password" name="password" placeholder="Password *" autocomplete="off">
-                        <span class="star small"></span>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control inp cpswd" type="password" name="confirmation" placeholder="Confirm Password *" autocomplete="off">
-                        <span class="star small"></span>
-                    </div>
-        
-        
-                    <center>
-                        <input class="btn btn-danger" type="submit" value="Sign Up" style="margin-top: 10px; width: 95%;" disabled>
-                    </center>
-                </form>
-            
-                <div>
-                    <center>
-                        Already have an account?&nbsp;&nbsp;<a href="{% url 'login' %}">Log in</a>
-                    </center>
-                </div><br><br>
-            </div>
-        </div>
-    </body>
-</html> -->

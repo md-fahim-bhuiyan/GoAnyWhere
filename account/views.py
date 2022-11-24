@@ -47,7 +47,7 @@ class UserRegistrationView(APIView):
         if serializer.is_valid(raise_exception=True):
             user = serializer.save()
             token = get_tokens_for_user(user)
-            return render(request, 'home.html')
+            return redirect('login')
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 def register(request):
@@ -63,8 +63,7 @@ def login(request):
             messages.info(request, 'Sucessfully Logged in')
             email = request.user.email
             print(email)
-            content = 'Hello ' + request.user.name + '\n' + 'You are logged in in our site.keep connected and keep travelling.'
-            return render(request, 'home.html')
+            return redirect('home')
         else:
             messages.info(request, 'Invalid credential')
             return redirect('login')
@@ -114,7 +113,10 @@ def index(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html', {"firstname": request.user.username})
+    return render(request, 'profile.html')
+
+def resetPassword(request):
+    return render(request, 'resetPassword.html')
 
 def query(request, q):
     places = Place.objects.all()
