@@ -95,8 +95,6 @@
     padding-left: 12px;
     padding-right: 12px;
 }
-.trip-modify button{
-}
 .spl-btn{
     transition-duration: .2s;
     color: white;
@@ -117,9 +115,6 @@
 .spl-btn2:focus{
     box-shadow: none!important;
 }
-/*.trip-modify button:hover, button:active, button:focus{
-    background-color: rgba(220,53,69,.1);
-}*/
 .trip-modify button:hover, button:active{
     background-color: rgb(255, 235, 245);
     color: rgb(189, 4, 116);
@@ -211,9 +206,7 @@
 .each-flight-div{
     display: flex;
     justify-content: space-between;
-    padding: 15px 20px;/*
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);*/
+    padding: 15px 20px;
 }
 .each-flight-div-box{
     border-radius: 5px;
@@ -318,28 +311,6 @@
     visibility: visible;
   }
 
-
-/*.flight-stops-seperator{
-    border-top: 2px solid #979797;
-    width: 50px;
-    height: 2px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    z-index: 1;
-}
-.flight-stops-disc{
-    width: 6px;
-    height: 6px;
-    border: 1px solid #000;
-    display: inline-block;
-    background-color: #fff;
-    position: relative;
-    z-index: 2;
-}*/
 .flight-details-btn{
     display: flex;
     flex: 1;
@@ -351,15 +322,11 @@
 .sort-div{
     display: flex;
     justify-content: space-between;
-    /*margin-left: 20px;
-    margin-right: 150px;*/
     padding-left: 20px;
     padding-right: 20px;
     font-size: .9em;
 }
 .sort-arrive, .sort-depart{
-    /*margin-left: 34px;
-    margin-right: 4px;*/
     text-align: center;
 }
 .sort-price{
@@ -434,17 +401,12 @@
     border: .5px dotted rgb(220, 45, 60);
     transition-duration: .4s;
 }
-/*.active-div{
-    background-color: rgb(220, 45, 60);
-}*/
 
 
 
 
 
 
-
-/************************************/
 .tabs{
     margin-top:50px;
     font-size:15px;
@@ -488,13 +450,8 @@
     
     background: #b80190;
     background: linear-gradient(45deg, crimson 0%, #b80190 100%);
-    /*background: #05abe0;*/
-    /*background: linear-gradient(45deg, #05abe0 0%,#8200f4 100%);*/
-    
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05abe0', endColorstr='#8200f4',GradientType=1 );
   }
-  
-/***********************************/
 
 
 
@@ -526,11 +483,6 @@
     .section1{
         font-size: 1em;
     }
-    /*.query-data-div .container{
-        padding-right: 0;
-        padding-left: 0;
-        display: block;
-    }*/
     .query-result-div .container{
         padding-right: 0;
         padding-left: 0;

@@ -208,11 +208,11 @@
                 <div class="part-2">
                     <ul>
                         {% if user.is_authenticated %}
-                        <li>Hello, {{user.name}}</li>
+                        <li><a href='profile'>Hello, {{user.name}}</a></li>
                         <li><a href="logout">logout</a></li>
                         {%else%}
                         <li><a href="login">Login</a></li>
-                        <li><a href="register">Register</a></li>
+                        <li><a href="registerion">Register</a></li>
                         {%endif%}
                     </ul>
                 </div>
@@ -256,11 +256,12 @@
       <div class="col-md-8">
 
         <div class="search">
-          <form class=" search_form" action="search" method="POST">
+          <form class=" search_form" action="" method="POST">
             {%csrf_token%}
           <i class="fa fa-search"></i>
           <input type="text" class="form-control" placeholder="Where To" style="font-size: 20px;">
-          <button class="btn btn-primary">Search</button>
+
+         <a href="{% url 'index' %}"> <button class="btn btn-primary">Search</button></a> 
           </form>
         </div>
         
@@ -275,7 +276,7 @@
           <div class="card" style="width: 25rem;">
             <img src="{% static  'plane.jpg'%} " class="card-img-top" alt="FLIGHT" style="width: 100%;"  class="center">
             <div class="card-body">
-              <h1>FLIGHT</h1>
+              <a href="{% url 'index' %}"><h1>FLIGHT</h1></a>
             </div>
           </div>
         </div>

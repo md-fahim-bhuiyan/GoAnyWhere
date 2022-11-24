@@ -69,9 +69,8 @@
 .each-flight-div{
     display: flex;
     justify-content: space-between;
-    padding: 15px 20px;/*
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);*/
+    padding: 15px 20px;
+    
 }
 .each-flight-div-box{
     border-radius: 5px;
@@ -188,15 +187,11 @@
 .sort-div{
     display: flex;
     justify-content: space-between;
-    /*margin-left: 20px;
-    margin-right: 150px;*/
     padding-left: 20px;
     padding-right: 20px;
     font-size: .9em;
 }
 .sort-arrive, .sort-depart{
-    /*margin-left: 34px;
-    margin-right: 4px;*/
     text-align: center;
 }
 .sort-price{
@@ -242,100 +237,4 @@
 }
 .close-filter button:focus, button:active{
     box-shadow: none;
-}
-
-
-
-
-@media (max-width: 376px){
-    .query-result-div{
-        display: block;
-    }
-    .query-result-div > .container > .row{
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .query-data-div{
-        display: none;
-    }
-    .query-data-div2{
-        display: block;
-    }
-    .actual-result-div{
-        padding: 10px 0px!important;
-    }
-    .sort-div{
-        display: none!important;
-    }
-    .each-flight-div{
-        padding: 12px 10px;
-    }
-    .each-flight-div div{
-        overflow-wrap: break-word;
-    }
-    .flight-icon{
-        display: none;
-    }
-    .flight-time-div{
-        max-width: 44%;
-    }
-    .flight-time h5{
-        font-size: 1em;
-    }
-    .flight-stops{
-        width: 17%;
-    }
-    .flight-company{
-        width: 23%;
-    }
-    .flight-details h5{
-        font-size: 1em;
-    }
-    .o-b{
-        display: none;
-    }
-    .flight-price{
-        margin: auto;
-    }
-    .flight-details-btn{
-        display: none;
-    }
-    .flight-details{
-        display: flex;
-        justify-content: center;
-        width: 23%;
-    }
-    .white{
-        font-size: medium;
-    }
-
-
-
-    .filter-div{
-        position: fixed;
-        height: 100%;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: white;
-        z-index: 999999;
-        box-shadow: 0 0 20px rgba(0, 0, 0, .3);
-        padding-top: 10px;
-        padding-bottom: 10px;
-        display: none;
-    }
-    .filter-div h4{
-        font-size: 1.4em;
-    }
-    .close-filter{
-        display: block;
-    }
-    .f1{
-        background-color: rgb(227, 242, 253);
-    }
-    .selection1, .selection2, .selection-total, .selection-confirm{
-        display: none!important;
-    }
-    .selection-media{
-        display: flex!important;
-    }
 }

@@ -1,6 +1,5 @@
  document.addEventListener("DOMContentLoaded", () => {
     flight_duration2();
-    //document.querySelector(".filter-price2 input[type=range]").addEventListener('input', filter); //filter_price
     filter_price2();
     document.querySelector(".clr-filter-div2 button").addEventListener('click', reset_filter2);
 });
