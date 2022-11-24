@@ -3,8 +3,6 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 from datetime import datetime
-# # custom user manager
-
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, tc, password=None, password2=None):
@@ -35,7 +33,7 @@ class UserManager(BaseUserManager):
     class Meta:
         db_table = "UserManager"
 
-# user
+
 
 
 class User(AbstractBaseUser):
