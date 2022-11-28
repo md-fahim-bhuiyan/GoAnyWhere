@@ -98,20 +98,6 @@
     </nav>
     <hr style="height: 1px; border: 0; background-color: grey;" noshade>
     <main style="padding: 10px;">
-        <div style="margin: 15px auto;">
-            <h3>Important information</h3>
-            <ul style="padding-left: 50px;">
-                <li>
-                    This is your E-Ticket Iternary. You must bring it to the airport for check-in, and it is recommended you to retain a copy for your records.
-                </li>
-                <li>
-                    Each passenger travelling needs a printed copy of this document for immigrations, customs, airport security checks and duty free purchases.
-                </li>
-                <li>
-                    Economy Class passengers should report to airline check-in desks 3 hours prior to departure of all flights. First and Business Class passengers should report to airline check-in desks not later than 1 hour prior to departure. Boarding for your flight begins at least 35 minutes before your scheduled departure time. Gates close 15 minutes prior to departure
-                </li>
-            </ul>
-        </div>
         <div class="table-div">
             <table class="table">
                 <tr class="tr-caption">
@@ -123,7 +109,7 @@
                     <th>TICKET REFERENCE</th>
                     <td>{{ticket1.ref_no | upper}}</td>
                     <th>BOOKING DATE & TIME</th>
-                    <td>{{ticket1.booking_date | date:'d M y' | upper}}<br>{{ticket1.booking_date | time:'Hi' | upper}}</td>
+                    <td>{{ticket1.booking_date | date:'d M y' | upper}}<br>{{ticket1.booking_date | time:'H:i' | upper}}</td>
                 </tr>
                 <tr class="tr-even">
                     <th>FLIGHT DATE</th>

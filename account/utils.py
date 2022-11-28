@@ -25,11 +25,7 @@ def addPlaces():
         airport = data[1].strip()
         code = data[2].strip()
         country = data[3].strip()
-        try:
-            Place.objects.create(city=city, airport=airport, code=code, country=country)
-        except Exception as e:
-            continue
-    print("Done.\n")
+        Place.objects.create(city=city, airport=airport, code=code, country=country)
 
 def addDomesticFlights():
     file =""
@@ -50,15 +46,10 @@ def addDomesticFlights():
         economy_fare = float(data[11].strip()) if data[11].strip() else 0.0
         business_fare = float(data[12].strip()) if data[12].strip() else 0.0
         first_fare = float(data[13].strip()) if data[13].strip() else 0.0
+        a1 = Flight.objects.create(origin=Place.objects.get(code=origin), destination=Place.objects.get(code=destination), depart_time=depart_time , duration=duration, arrival_time=arrive_time, plane=flight_no, airline=airline, economy_fare=economy_fare, business_fare=business_fare, first_fare=first_fare)
+        a1.depart_day.add(Week.objects.get(number=depart_week))
+        a1.save()
 
-        try:
-            a1 = Flight.objects.create(origin=Place.objects.get(code=origin), destination=Place.objects.get(code=destination), depart_time=depart_time , duration=duration, arrival_time=arrive_time, plane=flight_no, airline=airline, economy_fare=economy_fare, business_fare=business_fare, first_fare=first_fare)
-            a1.depart_day.add(Week.objects.get(number=depart_week))
-            a1.save()
-        except Exception as e:
-            print(e)
-            return
-    print("Done.\n")
 
 def addInternationalFlights():
     file ="" 
@@ -79,12 +70,7 @@ def addInternationalFlights():
         economy_fare = float(data[11].strip()) if data[11].strip() else 0.0
         business_fare = float(data[12].strip()) if data[12].strip() else 0.0
         first_fare = float(data[13].strip()) if data[13].strip() else 0.0
-
-        try:
-            a1 = Flight.objects.create(origin=Place.objects.get(code=origin), destination=Place.objects.get(code=destination), depart_time=depart_time , duration=duration, arrival_time=arrive_time, plane=flight_no, airline=airline, economy_fare=economy_fare, business_fare=business_fare, first_fare=first_fare)
-            a1.depart_day.add(Week.objects.get(number=depart_week))
-            a1.save()
-        except Exception as e:
-            print(e)
-            return
+        a1 = Flight.objects.create(origin=Place.objects.get(code=origin), destination=Place.objects.get(code=destination), depart_time=depart_time , duration=duration, arrival_time=arrive_time, plane=flight_no, airline=airline, economy_fare=economy_fare, business_fare=business_fare, first_fare=first_fare)
+        a1.depart_day.add(Week.objects.get(number=depart_week))
+        a1.save()
     print("Done.\n")

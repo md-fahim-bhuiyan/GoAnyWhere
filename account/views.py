@@ -138,56 +138,35 @@ def flight(request):
     origin = Place.objects.get(code=o_place.upper())
     if seat == 'economy':
         flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(economy_fare=0).order_by('economy_fare')
-        try:
-            max_price = flights.last().economy_fare
-            min_price = flights.first().economy_fare
-        except:
-            max_price = 0
-            min_price = 0
+        max_price = flights.last().economy_fare
+        min_price = flights.first().economy_fare
 
         if trip_type == '2':    
             flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(economy_fare=0).order_by('economy_fare')    
-            try:
-                max_price2 = flights2.last().economy_fare   
-                min_price2 = flights2.first().economy_fare  
-            except:
-                max_price2 = 0  
-                min_price2 = 0  
+            max_price2 = flights2.last().economy_fare   
+            min_price2 = flights2.first().economy_fare  
+
                 
     elif seat == 'business':
         flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(business_fare=0).order_by('business_fare')
-        try:
-            max_price = flights.last().business_fare
-            min_price = flights.first().business_fare
-        except:
-            max_price = 0
-            min_price = 0
+        max_price = flights.last().business_fare
+        min_price = flights.first().business_fare
+
 
         if trip_type == '2':    
             flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(business_fare=0).order_by('business_fare')    
-            try:
-                max_price2 = flights2.last().business_fare   
-                min_price2 = flights2.first().business_fare  
-            except:
-                max_price2 = 0  
-                min_price2 = 0  
+            max_price2 = flights2.last().business_fare   
+            min_price2 = flights2.first().business_fare  
+ 
     elif seat == 'first':
         flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(first_fare=0).order_by('first_fare')
-        try:
-            max_price = flights.last().first_fare
-            min_price = flights.first().first_fare
-        except:
-            max_price = 0
-            min_price = 0
-            
+        max_price = flights.last().first_fare
+        min_price = flights.first().first_fare
         if trip_type == '2':    
             flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(first_fare=0).order_by('first_fare')
-            try:
-                max_price2 = flights2.last().first_fare   
-                min_price2 = flights2.first().first_fare  
-            except:
-                max_price2 = 0  
-                min_price2 = 0      
+            max_price2 = flights2.last().first_fare   
+            min_price2 = flights2.first().first_fare  
+  
 
     if trip_type == '2':
         return render(request, "flight/search.html", {
@@ -343,26 +322,22 @@ def payment(request):
             exp_month = request.POST['expMonth']
             exp_year = request.POST['expYear']
             cvv = request.POST['cvv']
-
-            try:
-                ticket = Ticket.objects.get(id=ticket_id)
-                ticket.status = 'CONFIRMED'
-                ticket.booking_date = datetime.now()
-                ticket.save()
-                if t2:
-                    ticket2 = Ticket.objects.get(id=ticket2_id)
-                    ticket2.status = 'CONFIRMED'
-                    ticket2.save()
-                    return render(request, 'flight/payment_process.html', {
-                        'ticket1': ticket,
-                        'ticket2': ticket2
-                    })
+            ticket = Ticket.objects.get(id=ticket_id)
+            ticket.status = 'CONFIRMED'
+            ticket.booking_date = datetime.now()
+            ticket.save()
+            if t2:
+                ticket2 = Ticket.objects.get(id=ticket2_id)
+                ticket2.status = 'CONFIRMED'
+                ticket2.save()
                 return render(request, 'flight/payment_process.html', {
                     'ticket1': ticket,
-                    'ticket2': ""
+                    'ticket2': ticket2
                 })
-            except Exception as e:
-                return HttpResponse(e)
+            return render(request, 'flight/payment_process.html', {
+                'ticket1': ticket,
+                'ticket2': ""
+            })
         else:
             return HttpResponse("Method must be post.")
     else:
