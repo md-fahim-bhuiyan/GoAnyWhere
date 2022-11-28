@@ -1,32 +1,20 @@
-from urllib import request
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from account.serializers import  UserRegistrationserializer
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
-from django.contrib import messages
-from django.shortcuts import render
-from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.contrib.auth.models import auth
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 from datetime import datetime
 import math
 from django.urls import reverse
 from .models import *
 from GoAnywhere.utils import render_to_pdf, createticket
-from django.shortcuts import render
-from django.contrib.auth.models import User, auth
 from .constant import FEE
-from account.utils import createWeekDays, addPlaces, addDomesticFlights, addInternationalFlights
 from django.contrib.auth.decorators import login_required
 
 def get_tokens_for_user(user):
@@ -65,8 +53,9 @@ def login(request):
             print(email)
             return redirect('home')
         else:
-            messages.info(request, 'Invalid credential')
-            return redirect('login')
+           return render(request, "login.html", {
+                "message": "Invalid username and/or password."
+            })
     else:
         return render(request, 'login.html')
 
@@ -116,6 +105,7 @@ def profile(request):
     return render(request, 'profile.html')
 
 def resetPassword(request):
+
     return render(request, 'resetPassword.html')
 
 def query(request, q):
