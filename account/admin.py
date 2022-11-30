@@ -22,9 +22,11 @@ class UserModelAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 admin.site.register(User, UserModelAdmin)
-
 admin.site.register(Place)
 admin.site.register(Week)
 admin.site.register(Flight)
 admin.site.register(Passenger)
 admin.site.register(Ticket)
+admin.site.register(Hotel)
+admin.site.register(Room)
+admin.site.register(Reservation)

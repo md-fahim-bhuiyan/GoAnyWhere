@@ -48,6 +48,7 @@
                     <form action="{% url 'getticket' %}" method="get" target="_blank">
                         <input type="hidden" name="ref" value="{{ticket2.ref_no}}">
                         <button type="submit" class="btn btn-outline-primary">Print Ticket ({{ticket2.flight.origin.code}} to {{ticket2.flight.destination.code}})</button>
+
                     </form>
                 {% endif %}
             </div>
@@ -64,5 +65,6 @@
             <button class="btn btn-outline-primary" type="button" onclick="window.location.href = '/'">Go Home</button>
         </div>
     </section>
+    <button >Hotel</button>
 </body>
 </html>

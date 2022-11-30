@@ -19,7 +19,6 @@ function filter2(element=null) {
         inactive2(element);
         active2(element);   
     }
-    //let type = element.dataset.type;
     let start = null;
     let end = null;
     let flights = null;
@@ -48,12 +47,10 @@ function arrival_slot2(flights, start, end) {
         for (let i = 0; i < flights.length; i++) {
             time = flights[i].querySelector(".flight-destination-time2 .flight-time h5").innerText.split(":");
             if((parseInt(time[0]) >= parseInt(start)) && (parseInt(time[0]) < parseInt(end))) {
-                //flights[i].style.display = 'block';
                 flights[i].classList.add('show');
                 flights[i].classList.remove('hide');
             }
             else {
-                //flights[i].style.display = 'none';
                 flights[i].classList.add('hide');
                 flights[i].classList.remove('show');
             }
@@ -65,12 +62,10 @@ function departure_slot2(flights, start, end) {
         for (let i = 0; i < flights.length; i++) {
             time = flights[i].querySelector(".flight-origin-time .flight-time h5").innerText.split(":");
             if((parseInt(time[0]) >= parseInt(start)) && (parseInt(time[0]) < parseInt(end))) {
-                //flights[i].style.display = 'block';
                 flights[i].classList.add('show');
                 flights[i].classList.remove('hide');
             }
             else {
-                //flights[i].style.display = 'none';
                 flights[i].classList.add('hide');
                 flights[i].classList.remove('show');
             }
@@ -149,12 +144,10 @@ function filter_price2() {
     let flights = div.querySelectorAll(".each-flight-div-box");
     for (let i = 0; i < flights.length; i++) {
         if (flights[i].querySelector(".flight-price span").innerText > parseInt(value)) {
-            //flights[i].style.display = 'none';
             flights[i].classList.add('hide');
             flights[i].classList.remove('show');
         }
         else {
-            //flights[i].style.display = 'block';
             flights[i].classList.add('show');
             flights[i].classList.remove('hide');
         }
@@ -172,7 +165,6 @@ function reset_filter2() {
 
     let flights = document.querySelector("#flights_div2").querySelectorAll(".each-flight-div-box");
     for (let i = 0; i < flights.length; i++) {
-            //flights[i].style.display = 'block';
             flights[i].classList.add('show');
             flights[i].classList.remove('hide');
     }

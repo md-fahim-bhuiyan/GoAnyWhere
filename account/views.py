@@ -54,7 +54,7 @@ def login(request):
             return redirect('home')
         else:
            return render(request, "login.html", {
-                "message": "Invalid username and/or password."
+                "message": "Invalid Email and/or password."
             })
     else:
         return render(request, 'login.html')
@@ -430,3 +430,73 @@ def terms_and_conditions(request):
 
 def about_us(request):
     return render(request, 'about.html')
+
+
+
+def hotel(request):
+    all_location = Hotel.objects.values_list('location','id').distinct().order_by()
+    if request.method =="POST":
+        try:
+            print(request.POST)
+            hotel = Hotel.objects.all().get(id=int(request.POST['search_location']))
+            rr = []
+            
+            for each_reservation in Reservation.objects.all():
+                if str(each_reservation.check_in) < str(request.POST['cin']) and str(each_reservation.check_out) < str(request.POST['cout']):
+                    pass
+                elif str(each_reservation.check_in) > str(request.POST['cin']) and str(each_reservation.check_out) > str(request.POST['cout']):
+                    pass
+                else:
+                    rr.append(each_reservation.room.id)
+                
+            room = Room.objects.all().filter(hotel=hotel,capacity__gte = int(request.POST['capacity'])).exclude(id__in=rr)
+            if len(room) == 0:
+                messages.warning(request,"Sorry No Rooms Are Available on this time period")
+            data = {'rooms':room,'all_location':all_location,'flag':True}
+            response = render(request,'hotel/index.html',data)
+        except Exception as e:
+            messages.error(request,e)
+            response = render(request,'hotel/index.html',{'all_location':all_location})
+
+
+    else:
+        data = {'all_location':all_location}
+        response = render(request,'hotel/index.html',data)
+    return HttpResponse(response)
+
+@login_required(login_url='/user')
+def book_room_page(request):
+    room = Room.objects.all().get(id=int(request.GET['roomid']))
+    return HttpResponse(render(request,'hotel/bookroom.html',{'room':room}))
+
+@login_required(login_url='/user')
+def book_room(request):
+    if request.method =="POST":
+        room_id = request.POST['room_id']     
+        room = Room.objects.all().get(id=room_id)
+        for each_reservation in Reservation.objects.all().filter(room = room):
+            if str(each_reservation.check_in) < str(request.POST['check_in']) and str(each_reservation.check_out) < str(request.POST['check_out']):
+                pass
+            elif str(each_reservation.check_in) > str(request.POST['check_in']) and str(each_reservation.check_out) > str(request.POST['check_out']):
+                pass
+            else:
+                messages.warning(request,"Sorry This Room is unavailable for Booking")
+                return redirect("hotel")
+            
+        current_user = request.user
+        total_person = int( request.POST['person'])
+        # booking_id = str(room_id) + str(datetime.datetime.now())
+        reservation = Reservation()
+        room_object = Room.objects.all().get(id=room_id)
+        room_object.status = '2'
+        user_object = User.objects.all().get(email=current_user)
+        reservation.guest = user_object
+        reservation.room = room_object
+        person = total_person
+        reservation.check_in = request.POST['check_in']
+        reservation.check_out = request.POST['check_out']
+        reservation.save()
+        messages.success(request,"Congratulations! Booking Successfull")
+        return redirect("hotel")
+    else:
+        return HttpResponse('Access Denied')
