@@ -1,11 +1,11 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from account.serializers import  UserRegistrationserializer
+from account.serializers import UserRegistrationserializer
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib import messages
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, redirect
 from django.contrib.auth.models import auth
 from django.views.decorators.csrf import csrf_exempt
@@ -17,6 +17,7 @@ from GoAnywhere.utils import render_to_pdf, createticket
 from .constant import FEE
 from django.contrib.auth.decorators import login_required
 
+
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
 
@@ -24,8 +25,11 @@ def get_tokens_for_user(user):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }
+
+
 def home(request):
     return render(request, 'home.html')
+
 
 class UserRegistrationView(APIView):
     renderer_classes = [UserRenderer]
@@ -38,8 +42,10 @@ class UserRegistrationView(APIView):
             return redirect('login')
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
+
 def register(request):
     return render(request, 'registation.html')
+
 
 def login(request):
     if request.method == 'POST':
@@ -53,7 +59,7 @@ def login(request):
             print(email)
             return redirect('home')
         else:
-           return render(request, "login.html", {
+            return render(request, "login.html", {
                 "message": "Invalid Email and/or password."
             })
     else:
@@ -74,39 +80,42 @@ def index(request):
         depart_date = request.POST.get('DepartDate')
         seat = request.POST.get('SeatClass')
         trip_type = request.POST.get('TripType')
-        if(trip_type == '1'):
+        if (trip_type == '1'):
             return render(request, 'flight/index.html', {
-            'origin': origin,
-            'destination': destination,
-            'depart_date': depart_date,
-            'seat': seat.lower(),
-            'trip_type': trip_type
-        })
-        elif(trip_type == '2'):
+                'origin': origin,
+                'destination': destination,
+                'depart_date': depart_date,
+                'seat': seat.lower(),
+                'trip_type': trip_type
+            })
+        elif (trip_type == '2'):
             return_date = request.POST.get('ReturnDate')
             return render(request, 'flight/index.html', {
-            'min_date': min_date,
-            'max_date': max_date,
-            'origin': origin,
-            'destination': destination,
-            'depart_date': depart_date,
-            'seat': seat.lower(),
-            'trip_type': trip_type,
-            'return_date': return_date
-        })
+                'min_date': min_date,
+                'max_date': max_date,
+                'origin': origin,
+                'destination': destination,
+                'depart_date': depart_date,
+                'seat': seat.lower(),
+                'trip_type': trip_type,
+                'return_date': return_date
+            })
     else:
         return render(request, 'flight/index.html', {
             'min_date': min_date,
             'max_date': max_date
         })
 
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
 
+
 def resetPassword(request):
 
     return render(request, 'resetPassword.html')
+
 
 def query(request, q):
     places = Place.objects.all()
@@ -115,7 +124,8 @@ def query(request, q):
     for place in places:
         if (q in place.city.lower()) or (q in place.airport.lower()) or (q in place.code.lower()) or (q in place.country.lower()):
             filters.append(place)
-    return JsonResponse([{'code':place.code, 'city':place.city, 'country': place.country} for place in filters], safe=False)
+    return JsonResponse([{'code': place.code, 'city': place.city, 'country': place.country} for place in filters], safe=False)
+
 
 @csrf_exempt
 def flight(request):
@@ -128,62 +138,65 @@ def flight(request):
     if trip_type == '2':
         returndate = request.GET.get('ReturnDate')
         return_date = datetime.strptime(returndate, "%Y-%m-%d")
-        flightday2 = Week.objects.get(number=return_date.weekday()) 
-        origin2 = Place.objects.get(code=d_place.upper())   
-        destination2 = Place.objects.get(code=o_place.upper())  
+        flightday2 = Week.objects.get(number=return_date.weekday())
+        origin2 = Place.objects.get(code=d_place.upper())
+        destination2 = Place.objects.get(code=o_place.upper())
     seat = request.GET.get('SeatClass')
 
     flightday = Week.objects.get(number=depart_date.weekday())
     destination = Place.objects.get(code=d_place.upper())
     origin = Place.objects.get(code=o_place.upper())
     if seat == 'economy':
-        flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(economy_fare=0).order_by('economy_fare')
+        flights = Flight.objects.filter(depart_day=flightday, origin=origin, destination=destination).exclude(
+            economy_fare=0).order_by('economy_fare')
         max_price = flights.last().economy_fare
         min_price = flights.first().economy_fare
 
-        if trip_type == '2':    
-            flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(economy_fare=0).order_by('economy_fare')    
-            max_price2 = flights2.last().economy_fare   
-            min_price2 = flights2.first().economy_fare  
+        if trip_type == '2':
+            flights2 = Flight.objects.filter(depart_day=flightday2, origin=origin2, destination=destination2).exclude(
+                economy_fare=0).order_by('economy_fare')
+            max_price2 = flights2.last().economy_fare
+            min_price2 = flights2.first().economy_fare
 
-                
     elif seat == 'business':
-        flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(business_fare=0).order_by('business_fare')
+        flights = Flight.objects.filter(depart_day=flightday, origin=origin, destination=destination).exclude(
+            business_fare=0).order_by('business_fare')
         max_price = flights.last().business_fare
         min_price = flights.first().business_fare
 
+        if trip_type == '2':
+            flights2 = Flight.objects.filter(depart_day=flightday2, origin=origin2, destination=destination2).exclude(
+                business_fare=0).order_by('business_fare')
+            max_price2 = flights2.last().business_fare
+            min_price2 = flights2.first().business_fare
 
-        if trip_type == '2':    
-            flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(business_fare=0).order_by('business_fare')    
-            max_price2 = flights2.last().business_fare   
-            min_price2 = flights2.first().business_fare  
- 
     elif seat == 'first':
-        flights = Flight.objects.filter(depart_day=flightday,origin=origin,destination=destination).exclude(first_fare=0).order_by('first_fare')
+        flights = Flight.objects.filter(depart_day=flightday, origin=origin, destination=destination).exclude(
+            first_fare=0).order_by('first_fare')
         max_price = flights.last().first_fare
         min_price = flights.first().first_fare
-        if trip_type == '2':    
-            flights2 = Flight.objects.filter(depart_day=flightday2,origin=origin2,destination=destination2).exclude(first_fare=0).order_by('first_fare')
-            max_price2 = flights2.last().first_fare   
-            min_price2 = flights2.first().first_fare  
-  
+        if trip_type == '2':
+            flights2 = Flight.objects.filter(depart_day=flightday2, origin=origin2, destination=destination2).exclude(
+                first_fare=0).order_by('first_fare')
+            max_price2 = flights2.last().first_fare
+            min_price2 = flights2.first().first_fare
 
     if trip_type == '2':
         return render(request, "flight/search.html", {
             'flights': flights,
             'origin': origin,
             'destination': destination,
-            'flights2': flights2,   
-            'origin2': origin2,    
-            'destination2': destination2,    
+            'flights2': flights2,
+            'origin2': origin2,
+            'destination2': destination2,
             'seat': seat.capitalize(),
             'trip_type': trip_type,
             'depart_date': depart_date,
             'return_date': return_date,
             'max_price': math.ceil(max_price/100)*100,
             'min_price': math.floor(min_price/100)*100,
-            'max_price2': math.ceil(max_price2/100)*100,    
-            'min_price2': math.floor(min_price2/100)*100    
+            'max_price2': math.ceil(max_price2/100)*100,
+            'min_price2': math.floor(min_price2/100)*100
         })
     else:
         return render(request, "flight/search.html", {
@@ -197,6 +210,7 @@ def flight(request):
             'max_price': math.ceil(max_price/100)*100,
             'min_price': math.floor(min_price/100)*100
         })
+
 
 def review(request):
     flight_1 = request.GET.get('flight1Id')
@@ -212,14 +226,16 @@ def review(request):
 
     if request.user.is_authenticated:
         flight1 = Flight.objects.get(id=flight_1)
-        flight1ddate = datetime(int(date1.split('-')[2]),int(date1.split('-')[1]),int(date1.split('-')[0]),flight1.depart_time.hour,flight1.depart_time.minute)
+        flight1ddate = datetime(int(date1.split('-')[2]), int(date1.split('-')[1]), int(
+            date1.split('-')[0]), flight1.depart_time.hour, flight1.depart_time.minute)
         flight1adate = (flight1ddate + flight1.duration)
         flight2 = None
         flight2ddate = None
         flight2adate = None
         if round_trip:
             flight2 = Flight.objects.get(id=flight_2)
-            flight2ddate = datetime(int(date2.split('-')[2]),int(date2.split('-')[1]),int(date2.split('-')[0]),flight2.depart_time.hour,flight2.depart_time.minute)
+            flight2ddate = datetime(int(date2.split('-')[2]), int(date2.split('-')[1]), int(
+                date2.split('-')[0]), flight2.depart_time.hour, flight2.depart_time.minute)
             flight2adate = (flight2ddate + flight2.duration)
         if round_trip:
             return render(request, "flight/book.html", {
@@ -242,6 +258,7 @@ def review(request):
     else:
         return HttpResponseRedirect(reverse("login"))
 
+
 def book(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -261,44 +278,49 @@ def book(request):
             if f2:
                 flight2 = Flight.objects.get(id=flight_2)
             passengerscount = request.POST['passengersCount']
-            passengers=[]
-            for i in range(1,int(passengerscount)+1):
+            passengers = []
+            for i in range(1, int(passengerscount)+1):
                 fname = request.POST[f'passenger{i}FName']
                 lname = request.POST[f'passenger{i}LName']
                 gender = request.POST[f'passenger{i}Gender']
-                passengers.append(Passenger.objects.create(first_name=fname,last_name=lname,gender=gender.lower()))
+                passengers.append(Passenger.objects.create(
+                    first_name=fname, last_name=lname, gender=gender.lower()))
             coupon = request.POST.get('coupon')
-            
-            try:
-                ticket1 = createticket(request.user,passengers,passengerscount,flight1,flight_1date,flight_1class,coupon,countrycode,email,mobile)
-                if f2:
-                    ticket2 = createticket(request.user,passengers,passengerscount,flight2,flight_2date,flight_2class,coupon,countrycode,email,mobile)
 
-                if(flight_1class == 'Economy'):
+            try:
+                ticket1 = createticket(request.user, passengers, passengerscount, flight1,
+                                       flight_1date, flight_1class, coupon, countrycode, email, mobile)
+                if f2:
+                    ticket2 = createticket(request.user, passengers, passengerscount, flight2,
+                                           flight_2date, flight_2class, coupon, countrycode, email, mobile)
+
+                if (flight_1class == 'Economy'):
                     if f2:
-                        fare = (flight1.economy_fare*int(passengerscount))+(flight2.economy_fare*int(passengerscount))
+                        fare = (flight1.economy_fare*int(passengerscount)) + \
+                            (flight2.economy_fare*int(passengerscount))
                     else:
                         fare = flight1.economy_fare*int(passengerscount)
                 elif (flight_1class == 'Business'):
                     if f2:
-                        fare = (flight1.business_fare*int(passengerscount))+(flight2.business_fare*int(passengerscount))
+                        fare = (flight1.business_fare*int(passengerscount)) + \
+                            (flight2.business_fare*int(passengerscount))
                     else:
                         fare = flight1.business_fare*int(passengerscount)
                 elif (flight_1class == 'First'):
                     if f2:
-                        fare = (flight1.first_fare*int(passengerscount))+(flight2.first_fare*int(passengerscount))
+                        fare = (flight1.first_fare*int(passengerscount)) + \
+                            (flight2.first_fare*int(passengerscount))
                     else:
                         fare = flight1.first_fare*int(passengerscount)
             except Exception as e:
                 return HttpResponse(e)
-            
 
-            if f2:    
-                return render(request, "flight/payment.html", { 
-                    'fare': fare+FEE,   
-                    'ticket': ticket1.id,   
-                    'ticket2': ticket2.id   
-                })  
+            if f2:
+                return render(request, "flight/payment.html", {
+                    'fare': fare+FEE,
+                    'ticket': ticket1.id,
+                    'ticket2': ticket2.id
+                })
             return render(request, "flight/payment.html", {
                 'fare': fare+FEE,
                 'ticket': ticket1.id
@@ -307,6 +329,7 @@ def book(request):
             return HttpResponseRedirect(reverse("login"))
     else:
         return HttpResponse("Method must be post.")
+
 
 def payment(request):
     if request.user.is_authenticated:
@@ -354,12 +377,13 @@ def ticket_data(request, ref):
         'status': ticket.status
     })
 
+
 @csrf_exempt
 def get_ticket(request):
     ref = request.GET.get("ref")
     ticket1 = Ticket.objects.get(ref_no=ref)
     data = {
-        'ticket1':ticket1,
+        'ticket1': ticket1,
         'current_year': datetime.now().year
     }
     pdf = render_to_pdf('flight/ticket.html', data)
@@ -368,13 +392,15 @@ def get_ticket(request):
 
 def bookings(request):
     if request.user.is_authenticated:
-        tickets = Ticket.objects.filter(user=request.user).order_by('-booking_date')
+        tickets = Ticket.objects.filter(
+            user=request.user).order_by('-booking_date')
         return render(request, 'flight/bookings.html', {
             'page': 'bookings',
             'tickets': tickets
         })
     else:
         return HttpResponseRedirect(reverse('login'))
+
 
 @csrf_exempt
 def cancel_ticket(request):
@@ -402,6 +428,7 @@ def cancel_ticket(request):
     else:
         return HttpResponse("Method must be POST.")
 
+
 def resume_booking(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -419,28 +446,33 @@ def resume_booking(request):
     else:
         return HttpResponse("Method must be post.")
 
+
 def contact(request):
     return render(request, 'contact.html')
+
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
 
+
 def terms_and_conditions(request):
     return render(request, 'terms.html')
+
 
 def about_us(request):
     return render(request, 'about.html')
 
 
-
 def hotel(request):
-    all_location = Hotel.objects.values_list('location','id').distinct().order_by()
-    if request.method =="POST":
+    all_location = Hotel.objects.values_list(
+        'location', 'id').distinct().order_by()
+    if request.method == "POST":
         try:
             print(request.POST)
-            hotel = Hotel.objects.all().get(id=int(request.POST['search_location']))
+            hotel = Hotel.objects.all().get(
+                id=int(request.POST['search_location']))
             rr = []
-            
+
             for each_reservation in Reservation.objects.all():
                 if str(each_reservation.check_in) < str(request.POST['cin']) and str(each_reservation.check_out) < str(request.POST['cout']):
                     pass
@@ -448,43 +480,48 @@ def hotel(request):
                     pass
                 else:
                     rr.append(each_reservation.room.id)
-                
-            room = Room.objects.all().filter(hotel=hotel,capacity__gte = int(request.POST['capacity'])).exclude(id__in=rr)
-            if len(room) == 0:
-                messages.warning(request,"Sorry No Rooms Are Available on this time period")
-            data = {'rooms':room,'all_location':all_location,'flag':True}
-            response = render(request,'hotel/index.html',data)
-        except Exception as e:
-            messages.error(request,e)
-            response = render(request,'hotel/index.html',{'all_location':all_location})
 
+            room = Room.objects.all().filter(hotel=hotel, capacity__gte=int(
+                request.POST['capacity'])).exclude(id__in=rr)
+            if len(room) == 0:
+                messages.warning(
+                    request, "Sorry No Rooms Are Available on this time period")
+            data = {'rooms': room, 'all_location': all_location, 'flag': True}
+            response = render(request, 'hotel/index.html', data)
+        except Exception as e:
+            messages.error(request, e)
+            response = render(request, 'hotel/index.html',
+                              {'all_location': all_location})
 
     else:
-        data = {'all_location':all_location}
-        response = render(request,'hotel/index.html',data)
+        data = {'all_location': all_location}
+        response = render(request, 'hotel/index.html', data)
     return HttpResponse(response)
+
 
 @login_required(login_url='/user')
 def book_room_page(request):
     room = Room.objects.all().get(id=int(request.GET['roomid']))
-    return HttpResponse(render(request,'hotel/bookroom.html',{'room':room}))
+    return HttpResponse(render(request, 'hotel/bookroom.html', {'room': room}))
+
 
 @login_required(login_url='/user')
 def book_room(request):
-    if request.method =="POST":
-        room_id = request.POST['room_id']     
+    if request.method == "POST":
+        room_id = request.POST['room_id']
         room = Room.objects.all().get(id=room_id)
-        for each_reservation in Reservation.objects.all().filter(room = room):
+        for each_reservation in Reservation.objects.all().filter(room=room):
             if str(each_reservation.check_in) < str(request.POST['check_in']) and str(each_reservation.check_out) < str(request.POST['check_out']):
                 pass
             elif str(each_reservation.check_in) > str(request.POST['check_in']) and str(each_reservation.check_out) > str(request.POST['check_out']):
                 pass
             else:
-                messages.warning(request,"Sorry This Room is unavailable for Booking")
+                messages.warning(
+                    request, "Sorry This Room is unavailable for Booking")
                 return redirect("hotel")
-            
+
         current_user = request.user
-        total_person = int( request.POST['person'])
+        total_person = int(request.POST['person'])
         # booking_id = str(room_id) + str(datetime.datetime.now())
         reservation = Reservation()
         room_object = Room.objects.all().get(id=room_id)
@@ -496,7 +533,7 @@ def book_room(request):
         reservation.check_in = request.POST['check_in']
         reservation.check_out = request.POST['check_out']
         reservation.save()
-        messages.success(request,"Congratulations! Booking Successfull")
+        messages.success(request, "Congratulations! Booking Successfull")
         return redirect("hotel")
     else:
         return HttpResponse('Access Denied')
