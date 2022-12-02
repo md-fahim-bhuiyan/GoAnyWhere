@@ -16,7 +16,7 @@ from .models import *
 from GoAnywhere.utils import render_to_pdf, createticket
 from .constant import FEE
 from django.contrib.auth.decorators import login_required
-
+from .forms import Contact
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -447,20 +447,7 @@ def resume_booking(request):
         return HttpResponse("Method must be post.")
 
 
-def contact(request):
-    return render(request, 'contact.html')
 
-
-def privacy_policy(request):
-    return render(request, 'privacy-policy.html')
-
-
-def terms_and_conditions(request):
-    return render(request, 'terms.html')
-
-
-def about_us(request):
-    return render(request, 'about.html')
 
 
 def hotel(request):
@@ -472,7 +459,6 @@ def hotel(request):
             hotel = Hotel.objects.all().get(
                 id=int(request.POST['search_location']))
             rr = []
-
             for each_reservation in Reservation.objects.all():
                 if str(each_reservation.check_in) < str(request.POST['cin']) and str(each_reservation.check_out) < str(request.POST['cout']):
                     pass
@@ -480,7 +466,6 @@ def hotel(request):
                     pass
                 else:
                     rr.append(each_reservation.room.id)
-
             room = Room.objects.all().filter(hotel=hotel, capacity__gte=int(
                 request.POST['capacity'])).exclude(id__in=rr)
             if len(room) == 0:
@@ -492,7 +477,6 @@ def hotel(request):
             messages.error(request, e)
             response = render(request, 'hotel/index.html',
                               {'all_location': all_location})
-
     else:
         data = {'all_location': all_location}
         response = render(request, 'hotel/index.html', data)
@@ -537,3 +521,26 @@ def book_room(request):
         return redirect("hotel")
     else:
         return HttpResponse('Access Denied')
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = Contact(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
+    form = Contact()
+    context = {'form': form}
+    return render(request, 'contact.html', context)
+
+
+def privacy_policy(request):
+    return render(request, 'privacy-policy.html')
+
+
+def terms_and_conditions(request):
+    return render(request, 'terms.html')
+
+
+def about_us(request):
+    return render(request, 'about.html')
