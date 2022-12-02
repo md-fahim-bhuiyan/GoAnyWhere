@@ -1,10 +1,10 @@
-    {% extends 'hotel/basic.html' %}
-    {% block title %}Hotel Search | GoAnywhere
-    {% endblock title %}
-    {% block body %}
-    <section>
-        <div class="container-fluid py-5 px-5 ">
-            <form action="" method="POST">
+{% extends 'hotel/basic.html' %}
+{% block title %}Hotel Search | GoAnywhere
+{% endblock title %}
+{% block body %}
+<section>
+    <div class="container-fluid py-5 px-5 ">
+        <form action="" method="POST">
             {% csrf_token %}
             <div class="row justify-content-center py-5 bg-light">
                 <div class="col-lg-4">
@@ -13,64 +13,66 @@
 
                         <option>Location</option>
                         {% for each_location,each_hotel_id in all_location %}
-                            
-                            <option value={{each_hotel_id}}>{{each_location}}</option>
-                        {% endfor %}    
+
+                        <option value={{each_hotel_id}}>{{each_location}}</option>
+                        {% endfor %}
 
                     </select>
                 </div>
-                
+
                 <div class="col-lg-2">
                     <label for="">Check in</label>
-                    
-                    <input class="form-control mr-sm-2" type="date" placeholder="Check in" name="cin" min={{min_date}} max={{max_date}} aria-label="Search" required="True">
+
+                    <input class="form-control mr-sm-2" type="date" placeholder="Check in" name="cin" min={{min_date}}
+                        max={{max_date}} aria-label="Search" required="True">
                 </div>
                 <br>
-                
+
                 <div class="col-lg-2">
                     <label for="">Check Out</label>
-                    <input class="form-control mr-sm-2" type="date" placeholder="Check out" name="cout" min={{min_date}} max={{max_date}} aria-label="Search" required="True">
+                    <input class="form-control mr-sm-2" type="date" placeholder="Check out" name="cout" min={{min_date}}
+                        max={{max_date}} aria-label="Search" required="True">
                 </div>
                 <div class="col-lg-2">
                     <label for="">Person</label>
-                    <input class="form-control mr-sm-2" type="number" placeholder="Person" name="capacity" aria-label="Search" required="True">
+                    <input class="form-control mr-sm-2" type="number" placeholder="Person" name="capacity"
+                        aria-label="Search" required="True">
                 </div>
                 <div class="col-lg-2">
 
-                    <input type="submit" value="Check Availabilty" class="form-control mr-sm-2 btn btn-primary my-4" style="position: relative;top: 7px;">
+                    <input type="submit" value="Check Availabilty" class="form-control mr-sm-2 btn btn-primary my-4"
+                        style="position: relative;top: 7px;">
                 </div>
                 {% if rooms %}
                 <p class="text-center text-success">Rooms Available</p>
                 {% endif %}
             </div>
-            </form>
+        </form>
 
-        </div>
-    </section>
-    <div class="container-fluid px-0 mx-aut">
-        {% if rooms %}
-           <table class="table">
-               <thead class="o">
-                <th>Type</th>
-                <th>Location</th>
-                <th>Person</th>
-                <th>Price(৳)</th>
-                <th>Action</th>
-            </thead>
-            {% for r in rooms %}
-                <tr class="">
-                <td>{{ r.get_room_type_display }}</td>
-                <td>{{ r.hotel.location }}</td>
-                <td>{{ r.capacity }}</td>
-                <td>{{ r.price }}</td>
-                
-                <td><a href="/user/book-room?roomid={{r.id}}"><button class="btn btn-warning">Book Now</button></a></td>
-                </tr>
-            {% endfor %}
-            
-           </table> 
-        {% endif %}
     </div>
-    {% endblock body %}
-   
-   
+</section>
+<div class="container-fluid px-0 mx-aut">
+    {% if rooms %}
+    <table class="table">
+        <thead class="o">
+            <th>Type</th>
+            <th>Location</th>
+            <th>Person</th>
+            <th>Price(৳)</th>
+            <th>Action</th>
+        </thead>
+        {% for r in rooms %}
+        <tr class="">
+            <td>{{ r.get_room_type_display }}</td>
+            <td>{{ r.hotel.location }}</td>
+            <td>{{ r.capacity }}</td>
+            <td>{{ r.price }}</td>
+
+            <td><a href="/user/book-room?roomid={{r.id}}"><button class="btn btn-warning">Book Now</button></a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    {% endif %}
+</div>
+{% endblock body %}

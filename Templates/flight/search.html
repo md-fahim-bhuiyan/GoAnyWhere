@@ -2,10 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Search | GoAnywhere</title>
     <link rel="stylesheet" href="{% static 'css/search_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/search2_style.css' %}">
@@ -16,7 +18,7 @@
             padding-top: 40px;
             /* padding-bottom: 100px; */
         }
-        
+
         .frame {
             height: 575px;
             width: 1000px;
@@ -33,323 +35,358 @@
             transition: all .5s ease;
         }
     </style>
- </head>
+</head>
+
 <body>
     <div class="container_in">
         <div class="frame">
-    <section class="section section1">
-        <div class="query-data-div">
-            <div class="container">
-                <div class="trip-places">
-                    <div class="from-div text-align-left">
-                        <div class="small-label">From</div>
-                        <div class="white">{{origin.city}} ({{origin.code}})</div>
-                    </div>
-                    <div class="trip-type-div white">
-                        <div class="small-label">&nbsp;</div>
-                        {% if trip_type == '2' %}                           
-                        {% else %}
-                        {% endif %}
-                    </div>
-                    <div class="to-div text-align-right">
-                        <div class="small-label">To</div>
-                        <div class="white">{{destination.city}} ({{destination.code}})</div>
-                    </div>
-                </div>
-                <div class="v-line"></div>
-                <div class="trip-time">
-                    <div class="depart-date-div">
-                        <div class="small-label">Depart</div>
-                        <div class="white">{{depart_date|date:"D, d M Y"}}</div>
-                    </div>
-                    <div class="return-date-div">
-                        <div class="small-label">Return</div>
-                        <div class="white">
-                            {% if return_date %}
-                                {{return_date|date:"D, d M Y"}}
-                            {% else %}
-                                --
-                            {% endif %}
+            <section class="section section1">
+                <div class="query-data-div">
+                    <div class="container">
+                        <div class="trip-places">
+                            <div class="from-div text-align-left">
+                                <div class="small-label">From</div>
+                                <div class="white">{{origin.city}} ({{origin.code}})</div>
+                            </div>
+                            <div class="trip-type-div white">
+                                <div class="small-label">&nbsp;</div>
+                                {% if trip_type == '2' %}
+                                {% else %}
+                                {% endif %}
+                            </div>
+                            <div class="to-div text-align-right">
+                                <div class="small-label">To</div>
+                                <div class="white">{{destination.city}} ({{destination.code}})</div>
+                            </div>
                         </div>
-                    </div>
-                </div><div class="v-line"></div>
-                <div class="trip-class">
-                    <div class="return-date-div">
-                        <div class="small-label">Class</div>
-                        <div class="white">{{seat}}</div>
-                    </div>
-                </div>
-                <div class="v-line"></div>
-                <div class="trip-modify">
-                    <form action="index" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="Origin" value="{{origin.code|upper}}">
-                        <input type="hidden" name="Destination" value="{{destination.code|upper}}">
-                        <input type="hidden" name="DepartDate" value='{{depart_date|date:"Y-m-d"}}'>
-                        <input type="hidden" name="ReturnDate" value='{{return_date|date:"Y-m-d"}}'>
-                        <input type="hidden" name="SeatClass" value="{{seat|lower}}">
-                        <input type="hidden" name="TripType" id="trip-identifier" value="{{trip_type}}">
-                        <button class="btn spl-btn" type="submit">Modify Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="query-data-div2">
-            <div class="container">
-                <div class="trip-modify">
-                    <form action="index" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="Origin" value="{{origin.code|upper}}">
-                        <input type="hidden" name="Destination" value="{{destination.code|upper}}">
-                        <input type="hidden" name="DepartDate" value='{{depart_date|date:"Y-m-d"}}'>
-                        <input type="hidden" name="ReturnDate" value='{{return_date|date:"Y-m-d"}}'>
-                        <input type="hidden" name="SeatClass" value="{{seat|lower}}">
-                        <input type="hidden" name="TripType" value="{{trip_type}}">
-                        <button class="btn spl-btn2" type="submit">
-                        </button>
-                    </form>
-                </div>
-                <div class="trip-data">
-                    <div class="trip-data-p" style="display: flex; color: white;">
-                        <div>{{origin.city}}</div>
-                        <div>
-                            {% if trip_type == '1' %}
-                                &nbsp;
-                                
-                                &nbsp;
-                            {% else %}
-                                &nbsp;
-                               
-                                &nbsp;
-                            {% endif %}
-                            
+                        <div class="v-line"></div>
+                        <div class="trip-time">
+                            <div class="depart-date-div">
+                                <div class="small-label">Depart</div>
+                                <div class="white">{{depart_date|date:"D, d M Y"}}</div>
+                            </div>
+                            <div class="return-date-div">
+                                <div class="small-label">Return</div>
+                                <div class="white">
+                                    {% if return_date %}
+                                    {{return_date|date:"D, d M Y"}}
+                                    {% else %}
+                                    --
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                        <div>{{destination.city}}</div>
-                    </div>
-                    <div class="trip-data-d" style="display: flex; font-size: .8em; color: rgb(240,240,240);">
-                        <div>
-                            {{depart_date | date:'D, d M'}}
-                            {% if trip_type == '2' %}
-                                |
-                                {{return_date | date:'D, d M'}}     
-                            {% endif %}
-                            |
-                            {{seat}}
+                        <div class="v-line"></div>
+                        <div class="trip-class">
+                            <div class="return-date-div">
+                                <div class="small-label">Class</div>
+                                <div class="white">{{seat}}</div>
+                            </div>
+                        </div>
+                        <div class="v-line"></div>
+                        <div class="trip-modify">
+                            <form action="index" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="Origin" value="{{origin.code|upper}}">
+                                <input type="hidden" name="Destination" value="{{destination.code|upper}}">
+                                <input type="hidden" name="DepartDate" value='{{depart_date|date:"Y-m-d"}}'>
+                                <input type="hidden" name="ReturnDate" value='{{return_date|date:"Y-m-d"}}'>
+                                <input type="hidden" name="SeatClass" value="{{seat|lower}}">
+                                <input type="hidden" name="TripType" id="trip-identifier" value="{{trip_type}}">
+                                <button class="btn spl-btn" type="submit">Modify Search</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="trip-filter">
-                    <button class="btn spl-btn2" onclick="show_filter()">
-                        
-                    </button>
-                </div>
-            </div>
-        </div>
-        {% if trip_type == '2' and flights %}
-            <div class="query-trip-type-div">
-                <div class="tabs">
-                    <div class="selector"></div>
-                    <a href="#" class="active-div" data-trip_type="1">{{origin.code}} &#8594; {{destination.code}}</a>
-                    <a href="#" data-trip_type="2">{{origin2.code}} &#8594; {{destination2.code}}</a>
-                </div>
-            </div>
-        {% endif %}
-        <div class="query-result-div">
-            <div class="container">
-                <div class="row">
-                    {% if flights %}
-                        <div class="col-lg-3 filter-div">
-                            <div class="close-filter" style="margin-top: 0;">
-                                <button class="btn b1" onclick="close_filter(this)">
-                                    
+                <div class="query-data-div2">
+                    <div class="container">
+                        <div class="trip-modify">
+                            <form action="index" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="Origin" value="{{origin.code|upper}}">
+                                <input type="hidden" name="Destination" value="{{destination.code|upper}}">
+                                <input type="hidden" name="DepartDate" value='{{depart_date|date:"Y-m-d"}}'>
+                                <input type="hidden" name="ReturnDate" value='{{return_date|date:"Y-m-d"}}'>
+                                <input type="hidden" name="SeatClass" value="{{seat|lower}}">
+                                <input type="hidden" name="TripType" value="{{trip_type}}">
+                                <button class="btn spl-btn2" type="submit">
                                 </button>
-                            </div>
-                            <div class="filter">
-                                <center>
-                                    <h4>Filter Results</h4>
-                                </center>
-                                <div class="filter-box">
-                                    <div class="filter-price">
-                                        <div class="font-weight-bold">Price</div>
-                                        <div>
-                                            <input type="range" class="form-control-range" min="{{min_price}}" max="{{max_price}}" value="{{max_price}}" oninput="filter()">
-                                            <div class="price-range-output">
-                                                <div class="initial-price-range">
-                                                    <span class="currency-symbol">৳</span>
-                                                    <span class="initial-price-value">{{min_price}}</span>
-                                                </div>
-                                                <div class="final-price-range">
-                                                    <span class="currency-symbol">৳</span>
-                                                    <span class="final-price-value"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div><!---->
-                                    <div class="time-slot departure-time-slot-group">
-                                        <div class="font-weight-bold">Departure Time</div>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="square-box" onclick="filter(this)" data-type="departure" data-start="0" data-end="6">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    Before 6 AM
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="departure" data-start="6" data-end="12">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    6 am - 12 pm
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="departure" data-start="12" data-end="18">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    12 pm - 6 pm
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="departure" data-start="18" data-end="24">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    After 6 pm
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="time-slot arrival-time-slot-group">
-                                        <div class="font-weight-bold">Arrival Time</div>
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <div class="square-box" onclick="filter(this)" data-type="arrival" data-start="0" data-end="6">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    Before 6 AM
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="arrival" data-start="6" data-end="12">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    6 am - 12 pm
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="arrival" data-start="12" data-end="18">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    12 pm - 6 pm
-                                                </div>
-                                            </div>
-                                            <div class="square-box" onclick="filter(this)" data-type="arrival" data-start="18" data-end="24">
-                                                <div class="filter-img-div">
-                                                    <div>
-                                                        <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
-                                                        <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    After 6 pm
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </form>
+                        </div>
+                        <div class="trip-data">
+                            <div class="trip-data-p" style="display: flex; color: white;">
+                                <div>{{origin.city}}</div>
+                                <div>
+                                    {% if trip_type == '1' %}
+                                    &nbsp;
+
+                                    &nbsp;
+                                    {% else %}
+                                    &nbsp;
+
+                                    &nbsp;
+                                    {% endif %}
+
                                 </div>
-                                <div class="clr-filter-div">
-                                    <center>
-                                        <button class="btn-link">Reset Filters</button>
-                                    </center>
-                                </div>
+                                <div>{{destination.city}}</div>
                             </div>
-                            <div class="close-filter">
-                                <button class="btn btn-danger b2" onclick="close_filter(this)">
-                                    SHOW RESULTS
-                                </button>
+                            <div class="trip-data-d" style="display: flex; font-size: .8em; color: rgb(240,240,240);">
+                                <div>
+                                    {{depart_date | date:'D, d M'}}
+                                    {% if trip_type == '2' %}
+                                    |
+                                    {{return_date | date:'D, d M'}}
+                                    {% endif %}
+                                    |
+                                    {{seat}}
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-9 actual-result-div">
-                            <div class="sort-div" style="display:none">
-                                <div class="sort-label">Sort By:</div>
-                                <div style="display: flex;">
-                                    <div class="sort-depart">
-                                        Depart
-                                        <span>--</span>
-                                    </div>
-                                    <div class="sort-arrive">
-                                        Arrive
-                                        <span>--</span>
-                                    </div>
-                                </div>
-                                <div class="sort-price">
-                                    Price
-                                    <span><!--&#8593;--><!--&#8595;--></span>
-                                </div>
-                            </div>
+                        <div class="trip-filter">
+                            <button class="btn spl-btn2" onclick="show_filter()">
 
-
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% if trip_type == '2' and flights %}
+                <div class="query-trip-type-div">
+                    <div class="tabs">
+                        <div class="selector"></div>
+                        <a href="#" class="active-div" data-trip_type="1">{{origin.code}} &#8594;
+                            {{destination.code}}</a>
+                        <a href="#" data-trip_type="2">{{origin2.code}} &#8594; {{destination2.code}}</a>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="query-result-div">
+                    <div class="container">
+                        <div class="row">
                             {% if flights %}
-                                <div class="sort-div">
-                                <div class="flight-company">
-                                    <div class="sort-label">Sort By:</div>
+                            <div class="col-lg-3 filter-div">
+                                <div class="close-filter" style="margin-top: 0;">
+                                    <button class="btn b1" onclick="close_filter(this)">
+
+                                    </button>
                                 </div>
-                                <div class="flight-time">
-                                    <div class="flight-origin-time sort-depart">
-                                        Depart
-                                        <span></span>
+                                <div class="filter">
+                                    <center>
+                                        <h4>Filter Results</h4>
+                                    </center>
+                                    <div class="filter-box">
+                                        <div class="filter-price">
+                                            <div class="font-weight-bold">Price</div>
+                                            <div>
+                                                <input type="range" class="form-control-range" min="{{min_price}}"
+                                                    max="{{max_price}}" value="{{max_price}}" oninput="filter()">
+                                                <div class="price-range-output">
+                                                    <div class="initial-price-range">
+                                                        <span class="currency-symbol">৳</span>
+                                                        <span class="initial-price-value">{{min_price}}</span>
+                                                    </div>
+                                                    <div class="final-price-range">
+                                                        <span class="currency-symbol">৳</span>
+                                                        <span class="final-price-value"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div class="time-slot departure-time-slot-group">
+                                            <div class="font-weight-bold">Departure Time</div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <div class="square-box" onclick="filter(this)" data-type="departure"
+                                                    data-start="0" data-end="6">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        Before 6 AM
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="departure"
+                                                    data-start="6" data-end="12">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        6 am - 12 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="departure"
+                                                    data-start="12" data-end="18">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        12 pm - 6 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="departure"
+                                                    data-start="18" data-end="24">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        After 6 pm
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="time-slot arrival-time-slot-group">
+                                            <div class="font-weight-bold">Arrival Time</div>
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <div class="square-box" onclick="filter(this)" data-type="arrival"
+                                                    data-start="0" data-end="6">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        Before 6 AM
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="arrival"
+                                                    data-start="6" data-end="12">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        6 am - 12 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="arrival"
+                                                    data-start="12" data-end="18">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        12 pm - 6 pm
+                                                    </div>
+                                                </div>
+                                                <div class="square-box" onclick="filter(this)" data-type="arrival"
+                                                    data-start="18" data-end="24">
+                                                    <div class="filter-img-div">
+                                                        <div>
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        After 6 pm
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="flight-stops"></div>
-                                    <div class="flight-destination-time sort-arrive">
-                                        Arrive
-                                        <span></span>
+                                    <div class="clr-filter-div">
+                                        <center>
+                                            <button class="btn-link">Reset Filters</button>
+                                        </center>
                                     </div>
                                 </div>
-                                <div class="flight-details">
-                                    Price
-                                    <span><!--&#8593;--><!--&#8595;--></span>
+                                <div class="close-filter">
+                                    <button class="btn btn-danger b2" onclick="close_filter(this)">
+                                        SHOW RESULTS
+                                    </button>
                                 </div>
                             </div>
-                            {% endif %}
+                            <div class="col-lg-9 actual-result-div">
+                                <div class="sort-div" style="display:none">
+                                    <div class="sort-label">Sort By:</div>
+                                    <div style="display: flex;">
+                                        <div class="sort-depart">
+                                            Depart
+                                            <span>--</span>
+                                        </div>
+                                        <div class="sort-arrive">
+                                            Arrive
+                                            <span>--</span>
+                                        </div>
+                                    </div>
+                                    <div class="sort-price">
+                                        Price
+                                        <span>
+                                            <!--&#8593;-->
+                                            <!--&#8595;-->
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                {% if flights %}
+                                <div class="sort-div">
+                                    <div class="flight-company">
+                                        <div class="sort-label">Sort By:</div>
+                                    </div>
+                                    <div class="flight-time">
+                                        <div class="flight-origin-time sort-depart">
+                                            Depart
+                                            <span></span>
+                                        </div>
+                                        <div class="flight-stops"></div>
+                                        <div class="flight-destination-time sort-arrive">
+                                            Arrive
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="flight-details">
+                                        Price
+                                        <span>
+                                            <!--&#8593;-->
+                                            <!--&#8595;-->
+                                        </span>
+                                    </div>
+                                </div>
+                                {% endif %}
 
 
 
 
-                            <div id="flights_div">
-                                {% for flight in flights %}
+                                <div id="flights_div">
+                                    {% for flight in flights %}
 
                                     <div class="each-flight-div-box show">
                                         <div class="each-flight-div" onclick="media_click(this)">
                                             <div class="flight-company">
                                                 <div class="flight-icon">
-                                                    
+
                                                 </div>
                                                 <div class="company-details">
                                                     <div class="company-name">{{flight.airline}}</div>
@@ -366,8 +403,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="flight-stops tooltip">
-                                                    
-                                                    <span class="tooltiptext" data-value="{{flight.duration}}"></span><!--07 hrs 50 mins-->
+
+                                                    <span class="tooltiptext" data-value="{{flight.duration}}"></span>
+                                                    <!--07 hrs 50 mins-->
                                                 </div>
                                                 <div class="flight-destination-time">
                                                     <div class="flight-time">
@@ -381,10 +419,11 @@
                                             <div class="flight-details">
                                                 <div class="flight-price">
                                                     <h5>
-                                                        ৳ 
+                                                        ৳
                                                         <span>
                                                             {% if seat == 'Economy' %}{{flight.economy_fare}}{% endif %}
-                                                            {% if seat == 'Business' %}{{flight.business_fare}}{% endif %}
+                                                            {% if seat == 'Business' %}{{flight.business_fare}}{% endif
+                                                            %}
                                                             {% if seat == 'First' %}{{flight.first_fare}}{% endif %}
                                                         </span>
                                                     </h5>
@@ -393,54 +432,63 @@
 
 
                                                     {% if trip_type == '2' %}
-                                                        {% if forloop.couter == 1 %}checked{% endif %}
-                                                        <input type="radio" class="flight1-radio r-b" name="test1" value="{{flight.id}}" data-plane='{{flight.plane}}' data-depart='{{flight.depart_time|time:"H:i"}}' data-arrive='{{flight.arrival_time|time:"H:i"}}' data-fare="{% if seat == 'Economy' %} {{flight.economy_fare}} {% elif seat == 'Business' %} {{flight.business_fare}} {% else %} {{flight.first_fare}} {% endif %}" {% if forloop.counter == 1 %}checked{% endif %}>
+                                                    {% if forloop.couter == 1 %}checked{% endif %}
+                                                    <input type="radio" class="flight1-radio r-b" name="test1"
+                                                        value="{{flight.id}}" data-plane='{{flight.plane}}'
+                                                        data-depart='{{flight.depart_time|time:"H:i"}}'
+                                                        data-arrive='{{flight.arrival_time|time:"H:i"}}'
+                                                        data-fare="{% if seat == 'Economy' %} {{flight.economy_fare}} {% elif seat == 'Business' %} {{flight.business_fare}} {% else %} {{flight.first_fare}} {% endif %}"
+                                                        {% if forloop.counter==1 %}checked{% endif %}>
                                                     {% else %}
-                                                        <form action="{% url 'review' %}" method="GET" style="display: flex;">
-                                                            <input type="hidden" name="flight1Id" value="{{flight.id}}">
-                                                            <input type="hidden" name="flight1Date", value="{{depart_date|date:'d-m-Y'}}">
-                                                            <input type="hidden" name="seatClass" value="{{seat}}">
-                                                            <button class="btn btn-primary btn-danger o-b" type="submit">
-                                                            
-                                                                Book Flight <!--&#8594;-->
-                                                            </button>
-                                                        </form>
+                                                    <form action="{% url 'review' %}" method="GET"
+                                                        style="display: flex;">
+                                                        <input type="hidden" name="flight1Id" value="{{flight.id}}">
+                                                        <input type="hidden" name="flight1Date" ,
+                                                            value="{{depart_date|date:'d-m-Y'}}">
+                                                        <input type="hidden" name="seatClass" value="{{seat}}">
+                                                        <button class="btn btn-primary btn-danger o-b" type="submit">
+
+                                                            Book Flight
+                                                            <!--&#8594;-->
+                                                        </button>
+                                                    </form>
                                                     {% endif %}
 
 
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
-                        </div>
-                    {% else %}
-                        <div style="height: 100%; width:100%; padding: 10%;">
-                            <div style="text-align: center; margin: auto;">
-                                
-                                <br><br>
-                                <h3>Sorry, No Flight for this Search</h3>
-                                <p>
-                                    We cannnot find any flights for the cabin class of your search. Please modify your search criteria and try again.
-                                </p>
+                            {% else %}
+                            <div style="height: 100%; width:100%; padding: 10%;">
+                                <div style="text-align: center; margin: auto;">
+
+                                    <br><br>
+                                    <h3>Sorry, No Flight for this Search</h3>
+                                    <p>
+                                        We cannnot find any flights for the cabin class of your search. Please modify
+                                        your search criteria and try again.
+                                    </p>
+                                </div>
                             </div>
+                            {% endif %}
                         </div>
-                    {% endif %}
+                    </div>
                 </div>
-            </div>
-        </div>
-        {% if trip_type == '2' and flights %}
-            <div class="query-result-div-2" style="display: none;">
-                <div class="container">
-                    <div class="row">
-                        {% if flights2 %}
+                {% if trip_type == '2' and flights %}
+                <div class="query-result-div-2" style="display: none;">
+                    <div class="container">
+                        <div class="row">
+                            {% if flights2 %}
                             <div class="col-lg-3 filter-div">
                                 <div class="close-filter" style="margin-top: 0;">
                                     <button class="btn b1" onclick="close_filter(this)">
-                                        
+
                                     </button>
                                 </div>
                                 <div class="filter">
@@ -451,7 +499,8 @@
                                         <div class="filter-price2">
                                             <div class="font-weight-bold">Price</div>
                                             <div>
-                                                <input type="range" class="form-control-range" min="{{min_price2}}" max="{{max_price2}}" value="{{max_price2}}" oninput="filter2()">
+                                                <input type="range" class="form-control-range" min="{{min_price2}}"
+                                                    max="{{max_price2}}" value="{{max_price2}}" oninput="filter2()">
                                                 <div class="price-range-output">
                                                     <div class="initial-price-range">
                                                         <span class="currency-symbol">৳</span>
@@ -463,48 +512,61 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><!---->
+                                        </div>
+                                        <!---->
                                         <div class="time-slot2 departure-time-slot-group2">
                                             <div class="font-weight-bold">Departure Time</div>
                                             <div style="display: flex; justify-content: space-between;">
-                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="0" data-end="6">
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure"
+                                                    data-start="0" data-end="6">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         Before 6 AM
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="6" data-end="12">
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure"
+                                                    data-start="6" data-end="12">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         6 am - 12 pm
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="12" data-end="18">
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure"
+                                                    data-start="12" data-end="18">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         12 pm - 6 pm
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="departure" data-start="18" data-end="24">
+                                                <div class="square-box" onclick="filter2(this)" data-type="departure"
+                                                    data-start="18" data-end="24">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
@@ -516,44 +578,56 @@
                                         <div class="time-slot2 arrival-time-slot-group2">
                                             <div class="font-weight-bold">Arrival Time</div>
                                             <div style="display: flex; justify-content: space-between;">
-                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="0" data-end="6">
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival"
+                                                    data-start="0" data-end="6">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/morning_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/morning_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/morning_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/morning_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         Before 6 AM
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="6" data-end="12">
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival"
+                                                    data-start="6" data-end="12">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/noon_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/noon_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/noon_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/noon_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         6 am - 12 pm
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="12" data-end="18">
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival"
+                                                    data-start="12" data-end="18">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/evening_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/evening_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/evening_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/evening_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
                                                         12 pm - 6 pm
                                                     </div>
                                                 </div>
-                                                <div class="square-box" onclick="filter2(this)" data-type="arrival" data-start="18" data-end="24">
+                                                <div class="square-box" onclick="filter2(this)" data-type="arrival"
+                                                    data-start="18" data-end="24">
                                                     <div class="filter-img-div">
                                                         <div>
-                                                            <img src="{% static 'img/night_inactive.png' %}" alt="" data-statefor="inactive">
-                                                            <img src="{% static 'img/night_active.png' %}" alt="" data-statefor="active" style="display: none;">
+                                                            <img src="{% static 'img/night_inactive.png' %}" alt=""
+                                                                data-statefor="inactive">
+                                                            <img src="{% static 'img/night_active.png' %}" alt=""
+                                                                data-statefor="active" style="display: none;">
                                                         </div>
                                                     </div>
                                                     <div>
@@ -590,13 +664,16 @@
                                     </div>
                                     <div class="sort-price">
                                         Price
-                                        <span><!--&#8593;--><!--&#8595;--></span>
+                                        <span>
+                                            <!--&#8593;-->
+                                            <!--&#8595;-->
+                                        </span>
                                     </div>
                                 </div>
 
 
                                 {% if flights2 %}
-                                    <div class="sort-div">
+                                <div class="sort-div">
                                     <div class="flight-company">
                                         <div class="sort-label">Sort By:</div>
                                     </div>
@@ -613,7 +690,10 @@
                                     </div>
                                     <div class="flight-details">
                                         Price
-                                        <span><!--&#8593;--><!--&#8595;--></span>
+                                        <span>
+                                            <!--&#8593;-->
+                                            <!--&#8595;-->
+                                        </span>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -624,245 +704,267 @@
                                 <div id="flights_div2">
                                     {% for flight2 in flights2 %}
 
-                                        <div class="each-flight-div-box show">
-                                            <div class="each-flight-div" onclick="media_click(this)">
-                                                <div class="flight-company">
-                                                    <div class="flight-icon">
-                                                       
+                                    <div class="each-flight-div-box show">
+                                        <div class="each-flight-div" onclick="media_click(this)">
+                                            <div class="flight-company">
+                                                <div class="flight-icon">
+
+                                                </div>
+                                                <div class="company-details">
+                                                    <div class="company-name">{{flight2.airline}}</div>
+                                                    <div class="plane-name">{{flight2.plane}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="flight-time">
+                                                <div class="flight-origin-time">
+                                                    <div class="flight-time">
+                                                        <h5>{{flight2.depart_time|time:"H:i"}}</h5>
                                                     </div>
-                                                    <div class="company-details">
-                                                        <div class="company-name">{{flight2.airline}}</div>
-                                                        <div class="plane-name">{{flight2.plane}}</div>
+                                                    <div class="flight-place">
+                                                        {{flight2.origin.city}}
                                                     </div>
                                                 </div>
-                                                <div class="flight-time">
-                                                    <div class="flight-origin-time">
-                                                        <div class="flight-time">
-                                                            <h5>{{flight2.depart_time|time:"H:i"}}</h5>
-                                                        </div>
-                                                        <div class="flight-place">
-                                                            {{flight2.origin.city}}
-                                                        </div>
-                                                    </div>
-                                                    <div class="flight-stops2 tooltip">
-                                                       
-                                                        <span class="tooltiptext" data-value="{{flight2.duration}}"></span><!--07 hrs 50 mins-->
-                                                    </div>
-                                                    <div class="flight-destination-time2">
-                                                        <div class="flight-time">
-                                                            <h5>{{flight2.arrival_time|time:"H:i"}}</h5>
-                                                        </div>
-                                                        <div class="flight-place">
-                                                            {{flight2.destination.city}}
-                                                        </div>
-                                                    </div>
+                                                <div class="flight-stops2 tooltip">
+
+                                                    <span class="tooltiptext" data-value="{{flight2.duration}}"></span>
+                                                    <!--07 hrs 50 mins-->
                                                 </div>
-                                                <div class="flight-details">
-                                                    <div class="flight-price">
-                                                        <h5>
-                                                            ৳ 
-                                                            <span>
-                                                                {% if seat == 'Economy' %}{{flight2.economy_fare}}{% endif %}
-                                                                {% if seat == 'Business' %}{{flight2.business_fare}}{% endif %}
-                                                                {% if seat == 'First' %}{{flight2.first_fare}}{% endif %}
-                                                            </span>
-                                                        </h5>
+                                                <div class="flight-destination-time2">
+                                                    <div class="flight-time">
+                                                        <h5>{{flight2.arrival_time|time:"H:i"}}</h5>
                                                     </div>
-                                                    <div class="flight-details-btn">
-
-
-
-                                                        {% if trip_type == '2' %}
-                                                            {% if forloop.couter == 1 %}checked{% endif %}
-                                                            <input type="radio" class="flight2-radio r-b" name="test2" value="{{flight2.id}}" data-plane='{{flight2.plane}}' data-depart='{{flight2.depart_time|time:"H:i"}}' data-arrive='{{flight2.arrival_time|time:"H:i"}}' data-fare="{% if seat == 'Economy' %} {{flight2.economy_fare}} {% elif seat == 'Business' %} {{flight2.business_fare}} {% else %} {{flight2.first_fare}} {% endif %}" {% if forloop.counter == 1 %}checked{% endif %}>
-                                                        {% else %}
-                                                            <form action="{% url 'review' %}" method="GET" style="display: flex;">
-                                                                <input type="hidden" name="flight1Id" value="{{flight2.id}}">
-                                                                <input type="hidden" name="flight1Date", value="{{depart_date|date:'d-m-Y'}}">
-                                                                <input type="hidden" name="seatClass" value="{{seat}}">
-                                                                <button class="btn btn-primary btn-danger" type="submit">
-                                                                    Book Flight &#8594;
-                                                                </button>
-                                                            </form>
-                                                        {% endif %}
-
-
-                                                        
+                                                    <div class="flight-place">
+                                                        {{flight2.destination.city}}
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="flight-details">
+                                                <div class="flight-price">
+                                                    <h5>
+                                                        ৳
+                                                        <span>
+                                                            {% if seat == 'Economy' %}{{flight2.economy_fare}}{% endif
+                                                            %}
+                                                            {% if seat == 'Business' %}{{flight2.business_fare}}{% endif
+                                                            %}
+                                                            {% if seat == 'First' %}{{flight2.first_fare}}{% endif %}
+                                                        </span>
+                                                    </h5>
+                                                </div>
+                                                <div class="flight-details-btn">
+
+
+
+                                                    {% if trip_type == '2' %}
+                                                    {% if forloop.couter == 1 %}checked{% endif %}
+                                                    <input type="radio" class="flight2-radio r-b" name="test2"
+                                                        value="{{flight2.id}}" data-plane='{{flight2.plane}}'
+                                                        data-depart='{{flight2.depart_time|time:"H:i"}}'
+                                                        data-arrive='{{flight2.arrival_time|time:"H:i"}}'
+                                                        data-fare="{% if seat == 'Economy' %} {{flight2.economy_fare}} {% elif seat == 'Business' %} {{flight2.business_fare}} {% else %} {{flight2.first_fare}} {% endif %}"
+                                                        {% if forloop.counter==1 %}checked{% endif %}>
+                                                    {% else %}
+                                                    <form action="{% url 'review' %}" method="GET"
+                                                        style="display: flex;">
+                                                        <input type="hidden" name="flight1Id" value="{{flight2.id}}">
+                                                        <input type="hidden" name="flight1Date" ,
+                                                            value="{{depart_date|date:'d-m-Y'}}">
+                                                        <input type="hidden" name="seatClass" value="{{seat}}">
+                                                        <button class="btn btn-primary btn-danger" type="submit">
+                                                            Book Flight &#8594;
+                                                        </button>
+                                                    </form>
+                                                    {% endif %}
+
+
+
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
 
                                     {% endfor %}
                                 </div>
                             </div>
-                        {% else %}
+                            {% else %}
                             <div style="height: 100%; width:100%; padding: 10%;">
                                 <div style="text-align: center; margin: auto;">
-                                   
+
                                     <br><br>
                                     <h3>Sorry, No Flight for this Search</h3>
                                     <p>
-                                        We cannnot find any flights for the cabin class of your search. Please modify your search criteria and try again.
+                                        We cannnot find any flights for the cabin class of your search. Please modify
+                                        your search criteria and try again.
                                     </p>
                                 </div>
                             </div>
-                        {% endif %}
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="selection-div">
-                <div class="col-3 selection1">
-                    <div class="white">
-                        <div>
-                            <span>{{origin.code|upper}}</span>
-                            
-                            <span>{{destination.code|upper}}</span>&nbsp;&nbsp;@&nbsp;&nbsp;৳
-                            <span id="select-f1-fare">
-                                {% if seat == "Economy" %}
+                <div class="selection-div">
+                    <div class="col-3 selection1">
+                        <div class="white">
+                            <div>
+                                <span>{{origin.code|upper}}</span>
+
+                                <span>{{destination.code|upper}}</span>&nbsp;&nbsp;@&nbsp;&nbsp;৳
+                                <span id="select-f1-fare">
+                                    {% if seat == "Economy" %}
                                     {{flights.all.0.economy_fare}}
-                                {% elif seat == "Business" %}
+                                    {% elif seat == "Business" %}
                                     {{flights.all.0.business_fare}}
-                                {% else %}
+                                    {% else %}
                                     {{flights.all.0.first_fare}}
-                                {% endif %}
-                            </span><!---->
-                        </div>
-                        <div class="white-2">
-                            <span id="select-f1-plane">{{flights.all.0.plane}}</span><!---->
-                            &nbsp;&nbsp;
-                            <span id="select-f1-depart">{{flights.all.0.depart_time | time:"H:i"}}</span><!---->
-                            •
-                            <span id="select-f1-arrive">{{flights.all.0.arrival_time | time:"H:i"}}</span><!---->
+                                    {% endif %}
+                                </span>
+                                <!---->
+                            </div>
+                            <div class="white-2">
+                                <span id="select-f1-plane">{{flights.all.0.plane}}</span>
+                                <!---->
+                                &nbsp;&nbsp;
+                                <span id="select-f1-depart">{{flights.all.0.depart_time | time:"H:i"}}</span>
+                                <!---->
+                                •
+                                <span id="select-f1-arrive">{{flights.all.0.arrival_time | time:"H:i"}}</span>
+                                <!---->
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3 selection2">
-                    <div class="white">
-                        <div>
-                            <span>{{destination.code|upper}}</span>
-                            
-                            <span>{{origin.code|upper}}</span>
-                            &nbsp;&nbsp;@&nbsp;&nbsp;৳
-                            {% if flights2 %}
+                    <div class="col-3 selection2">
+                        <div class="white">
+                            <div>
+                                <span>{{destination.code|upper}}</span>
+
+                                <span>{{origin.code|upper}}</span>
+                                &nbsp;&nbsp;@&nbsp;&nbsp;৳
+                                {% if flights2 %}
                                 &nbsp;&nbsp;@&nbsp;&nbsp;৳
                                 <span id="select-f2-fare">
                                     {% if seat == "Economy" %}
-                                        {{flights2.all.0.economy_fare}}
+                                    {{flights2.all.0.economy_fare}}
                                     {% elif seat == "Business" %}
-                                        {{flights2.all.0.business_fare}}
+                                    {{flights2.all.0.business_fare}}
                                     {% else %}
-                                        {{flights2.all.0.first_fare}}
-                                    {% endif %}
-                                </span><!---->
-                            {% endif %}
-                        </div>
-                        <div class="white-2">
-                            {% if flights2 %}
-                                <span id="select-f2-plane">{{flights2.all.0.plane}}</span><!---->
-                                &nbsp;&nbsp;
-                                <span id="select-f2-depart">{{flights2.all.0.depart_time | time:"H:i"}}</span><!---->
-                                •
-                                <span id="select-f2-arrive">{{flights2.all.0.arrival_time | time:"H:i"}}</span><!---->
-                            {% else %}
-                                <span id="select-f2-plane" style="letter-spacing: 2px!important;">--</span><!---->
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 selection-total">
-                    <div class="white">
-                        <div class="white-2">
-                            <span>TOTAL FARE</span>
-                        </div>
-                        <div>
-                            <span>৳
-                                <span id="select-total-fare">
-                                    {% if flights2 %}
-                                        {% if seat == "Economy" %}
-                                            {{flights.all.0.economy_fare | add:flights2.all.0.economy_fare}}
-                                        {% elif seat == "Business" %}
-                                            {{flights.all.0.business_fare | add:flights2.all.0.business_fare}}
-                                        {% else %}
-                                            {{flights.all.0.first_fare | add:flights2.all.0.first_fare}}
-                                        {% endif %}
-                                    {% else %}
-                                        {% if seat == "Economy" %}
-                                            {{flights.all.0.economy_fare}}
-                                        {% elif seat == "Business" %}
-                                            {{flights.all.0.business_fare}}
-                                        {% else %}
-                                            {{flights.all.0.first_fare}}
-                                        {% endif %}
+                                    {{flights2.all.0.first_fare}}
                                     {% endif %}
                                 </span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 selection-confirm">
-                    <div class="white">
-                        <div>
-                            <form action="{% url 'review' %}" method="GET">
-                                <input type="hidden" name="flight1Id" value="{{flights.all.0.id}}" id="flt1">
-                                <input type="hidden" name="flight1Date", value="{{depart_date|date:'d-m-Y'}}">
-                                <input type="hidden" name="flight2Id" value="{{flights2.all.0.id}}" id="flt2">
-                                <input type="hidden" name="flight2Date", value="{{return_date|date:'d-m-Y'}}">
-                                <input type="hidden" name="seatClass" value="{{seat}}">
-                                <button class="btn btn-light" type="submit">Continue &#8594;</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="selection-media">
-                    <div>
-                        <div class="col-7" style="display: flex; justify-content: space-between;">
-                            <div class="col-5" style="padding: 0; text-align: left;">
-                                <div>TOTAL</div>
-                                <div>AMOUNT</div>
+                                <!---->
+                                {% endif %}
                             </div>
-                            <div class="col-7" style="font-size: 1.2em; font-weight: bold; display: flex; padding: 0;">
-                                <span style="margin: auto;">৳
-                                    <span id="select-total-fare-media">
+                            <div class="white-2">
+                                {% if flights2 %}
+                                <span id="select-f2-plane">{{flights2.all.0.plane}}</span>
+                                <!---->
+                                &nbsp;&nbsp;
+                                <span id="select-f2-depart">{{flights2.all.0.depart_time | time:"H:i"}}</span>
+                                <!---->
+                                •
+                                <span id="select-f2-arrive">{{flights2.all.0.arrival_time | time:"H:i"}}</span>
+                                <!---->
+                                {% else %}
+                                <span id="select-f2-plane" style="letter-spacing: 2px!important;">--</span>
+                                <!---->
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 selection-total">
+                        <div class="white">
+                            <div class="white-2">
+                                <span>TOTAL FARE</span>
+                            </div>
+                            <div>
+                                <span>৳
+                                    <span id="select-total-fare">
                                         {% if flights2 %}
-                                            {% if seat == "Economy" %}
-                                                {{flights.all.0.economy_fare | add:flights2.all.0.economy_fare}}
-                                            {% elif seat == "Business" %}
-                                                {{flights.all.0.business_fare | add:flights2.all.0.business_fare}}
-                                            {% else %}
-                                                {{flights.all.0.first_fare | add:flights2.all.0.first_fare}}
-                                            {% endif %}
+                                        {% if seat == "Economy" %}
+                                        {{flights.all.0.economy_fare | add:flights2.all.0.economy_fare}}
+                                        {% elif seat == "Business" %}
+                                        {{flights.all.0.business_fare | add:flights2.all.0.business_fare}}
                                         {% else %}
-                                            {% if seat == "Economy" %}
-                                                {{flights.all.0.economy_fare}}
-                                            {% elif seat == "Business" %}
-                                                {{flights.all.0.business_fare}}
-                                            {% else %}
-                                                {{flights.all.0.first_fare}}
-                                            {% endif %}
+                                        {{flights.all.0.first_fare | add:flights2.all.0.first_fare}}
+                                        {% endif %}
+                                        {% else %}
+                                        {% if seat == "Economy" %}
+                                        {{flights.all.0.economy_fare}}
+                                        {% elif seat == "Business" %}
+                                        {{flights.all.0.business_fare}}
+                                        {% else %}
+                                        {{flights.all.0.first_fare}}
+                                        {% endif %}
                                         {% endif %}
                                     </span>
                                 </span>
                             </div>
                         </div>
-                        <div class="col-5" style="display: flex;">
-                            <div style="margin: auto;">
+                    </div>
+                    <div class="col-3 selection-confirm">
+                        <div class="white">
+                            <div>
                                 <form action="{% url 'review' %}" method="GET">
                                     <input type="hidden" name="flight1Id" value="{{flights.all.0.id}}" id="flt1">
-                                    <input type="hidden" name="flight1Date", value="{{depart_date|date:'d-m-Y'}}">
+                                    <input type="hidden" name="flight1Date" , value="{{depart_date|date:'d-m-Y'}}">
                                     <input type="hidden" name="flight2Id" value="{{flights2.all.0.id}}" id="flt2">
-                                    <input type="hidden" name="flight2Date", value="{{return_date|date:'d-m-Y'}}">
+                                    <input type="hidden" name="flight2Date" , value="{{return_date|date:'d-m-Y'}}">
                                     <input type="hidden" name="seatClass" value="{{seat}}">
                                     <button class="btn btn-light" type="submit">Continue &#8594;</button>
                                 </form>
                             </div>
                         </div>
                     </div>
+                    <div class="selection-media">
+                        <div>
+                            <div class="col-7" style="display: flex; justify-content: space-between;">
+                                <div class="col-5" style="padding: 0; text-align: left;">
+                                    <div>TOTAL</div>
+                                    <div>AMOUNT</div>
+                                </div>
+                                <div class="col-7"
+                                    style="font-size: 1.2em; font-weight: bold; display: flex; padding: 0;">
+                                    <span style="margin: auto;">৳
+                                        <span id="select-total-fare-media">
+                                            {% if flights2 %}
+                                            {% if seat == "Economy" %}
+                                            {{flights.all.0.economy_fare | add:flights2.all.0.economy_fare}}
+                                            {% elif seat == "Business" %}
+                                            {{flights.all.0.business_fare | add:flights2.all.0.business_fare}}
+                                            {% else %}
+                                            {{flights.all.0.first_fare | add:flights2.all.0.first_fare}}
+                                            {% endif %}
+                                            {% else %}
+                                            {% if seat == "Economy" %}
+                                            {{flights.all.0.economy_fare}}
+                                            {% elif seat == "Business" %}
+                                            {{flights.all.0.business_fare}}
+                                            {% else %}
+                                            {{flights.all.0.first_fare}}
+                                            {% endif %}
+                                            {% endif %}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-5" style="display: flex;">
+                                <div style="margin: auto;">
+                                    <form action="{% url 'review' %}" method="GET">
+                                        <input type="hidden" name="flight1Id" value="{{flights.all.0.id}}" id="flt1">
+                                        <input type="hidden" name="flight1Date" , value="{{depart_date|date:'d-m-Y'}}">
+                                        <input type="hidden" name="flight2Id" value="{{flights2.all.0.id}}" id="flt2">
+                                        <input type="hidden" name="flight2Date" , value="{{return_date|date:'d-m-Y'}}">
+                                        <input type="hidden" name="seatClass" value="{{seat}}">
+                                        <button class="btn btn-light" type="submit">Continue &#8594;</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             </section>
-            </div>
+        </div>
     </div>
-        {% endif %}
+    {% endif %}
 </body>
+
 </html>

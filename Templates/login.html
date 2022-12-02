@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,117 +8,118 @@
     <title>Login</title>
     <style>
         * {
-    padding: 0px;
-    margin: 0px;
-}
+            padding: 0px;
+            margin: 0px;
+        }
 
-body {
-    background-color: rgb(247, 230, 230);
-}
+        body {
+            background-color: rgb(247, 230, 230);
+        }
 
-.container {
-    width: 100%;
-    padding-top: 40px;
-    /* padding-bottom: 100px; */
-}
+        .container {
+            width: 100%;
+            padding-top: 40px;
+            /* padding-bottom: 100px; */
+        }
 
-.frame {
-    height: 575px;
-    width: 1000px;
-    background:
-        linear-gradient(#F5F5F5,
-            #dbdbe2);
-    background-size: cover;
-    margin-left: auto;
-    margin-right: auto;
-    border-top: solid 1px rgba(255, 255, 255, .5);
-    border-radius: 25px;
-    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    transition: all .5s ease;
-}
+        .frame {
+            height: 575px;
+            width: 1000px;
+            background:
+                linear-gradient(#F5F5F5,
+                    #dbdbe2);
+            background-size: cover;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: solid 1px rgba(255, 255, 255, .5);
+            border-radius: 25px;
+            box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all .5s ease;
+        }
 
-.part {
-    display: flex;
-    justify-content: left;
-}
+        .part {
+            display: flex;
+            justify-content: left;
+        }
 
-.part_a {
-    width: 520px;
-    height: 100%;
-}
+        .part_a {
+            width: 520px;
+            height: 100%;
+        }
 
-.part_b {
-    width: 480px;
-}
+        .part_b {
+            width: 480px;
+        }
 
-.tag {
-    margin-top: 50px;
-    height: 60px;
-    width: 250px;
-    background-color: #DEC0E2;
-    border: 0px;
-    border-radius: 0px 20px 20px 0px;
-}
+        .tag {
+            margin-top: 50px;
+            height: 60px;
+            width: 250px;
+            background-color: #DEC0E2;
+            border: 0px;
+            border-radius: 0px 20px 20px 0px;
+        }
 
-.tag h1 {
-    padding-top: 5px;
-    padding-left: 30px;
-    color: #F5F5F5;
-    font-size: 40px;
-}
+        .tag h1 {
+            padding-top: 5px;
+            padding-left: 30px;
+            color: #F5F5F5;
+            font-size: 40px;
+        }
 
-.caption {
-    margin-top: 20px;
-    text-align: center;
-}
+        .caption {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-form {
-    margin-left: 50px;
-    padding-top: 20px;
-    /* padding-bottom: 20px; */
-}
+        form {
+            margin-left: 50px;
+            padding-top: 20px;
+            /* padding-bottom: 20px; */
+        }
 
-input {
-    padding: 10px;
-    margin: 15px;
-    font-size: 25px;
-    border-radius: 10px;
-    border: solid 0px rgba(255, 255, 255, .5);
+        input {
+            padding: 10px;
+            margin: 15px;
+            font-size: 25px;
+            border-radius: 10px;
+            border: solid 0px rgba(255, 255, 255, .5);
 
-}
+        }
 
-form .input_button {
-    margin-left: 40px;
+        form .input_button {
+            margin-left: 40px;
 
-}
+        }
 
-.input_button {
-    background-color: #CCC8C8;
-    color: white;
+        .input_button {
+            background-color: #CCC8C8;
+            color: white;
 
-}
+        }
 
-.new {
-    text-align: center;
-}
+        .new {
+            text-align: center;
+        }
 
-.new a {
-    text-decoration: none;
-    color: #CCC8C8;
-}
+        .new a {
+            text-decoration: none;
+            color: #CCC8C8;
+        }
 
-.forgot_password {
-    text-align: center;
-    padding-top: 50px;
-}
+        .forgot_password {
+            text-align: center;
+            padding-top: 50px;
+        }
 
-.forgot_password a {
-    text-decoration: none;
-    color: #CCC8C8;
-}
+        .forgot_password a {
+            text-decoration: none;
+            color: #CCC8C8;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -144,16 +146,21 @@ form .input_button {
                         <span><small>{{message}}</small></span>
                     </div>
                     <div class="new">
-                        <a href="{%url 'register' %}"><h2>Create An Account</h2></a> 
+                        <a href="{%url 'register' %}">
+                            <h2>Create An Account</h2>
+                        </a>
                     </div>
                     <div class="forgot_password">
-                        <a href="http://"><h4>Forgot Password?</h4> </a> 
+                        <a href="http://">
+                            <h4>Forgot Password?</h4>
+                        </a>
                     </div>
-                 </div>
-                
+                </div>
+
             </div>
         </div>
-        
+
     </div>
 </body>
+
 </html>
