@@ -1,9 +1,54 @@
-{% extends 'hotel/basic.html' %} {% block title %}Book Room {% endblock title %} {% block body %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Book Room  GoAnywhere
+    </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'bootstrap\bootstrap.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+        }
+        .container {
+            width: 100%;
+            padding-top: 40px;
+            /* padding-bottom: 100px; */
+        }
+
+        .frame {
+            height: 850px;
+            width: 600px;
+            background:
+                linear-gradient(#F5F5F5,
+                    #dbdbe2);
+            background-size: cover;
+            margin-left: auto;
+            margin-right: auto;
+            border-top: solid 1px rgba(255, 255, 255, .5);
+            border-radius: 25px;
+            box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all .5s ease;
+        }
+    </style>
+</head>
+<body>
 <div class="container">
 
+    <div class="container_in">
+        <div class="frame">
     <div class="row">
         <div class="col-md-6 col-lg-6 col-xlg-6 col-sm-12 mx-auto my-4 ">
-
+            <h1 style="text-align: center;">Hotel Booking</h1>
             <form action="/user/book-room/book" method="POST">
                 {%csrf_token%}
                 <div class="form-group">
@@ -45,13 +90,13 @@
                     <input type="number" class="form-control " id="price" placeholder="price " name="price" disabled
                         value={{room.price}}>
                 </div>
-
-
                 <button type="submit" class="btn btn-primary">Book Now</button>
                 <input type="hidden" name="room_id" value={{room.id}}>
-
             </form>
         </div>
     </div>
+    </div>
+    </div>
 </div>
-{% endblock body %}
+</body>
+</html>
