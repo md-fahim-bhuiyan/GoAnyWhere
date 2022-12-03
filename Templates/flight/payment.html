@@ -1,28 +1,19 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
-    <link rel="stylesheet" href="{% static 'css/layout_style.css' %}">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
+  <link rel="stylesheet" href="{% static 'css/layout_style.css' %}">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <title>Payment | GoAnywhere</title>
     <link rel="stylesheet" href="{% static 'css/payment_style.css' %}">
-
+    
 </head>
-
 <body>
 
     <div class="section section1">
@@ -41,36 +32,31 @@
                         {% csrf_token %}
                         <input type="hidden" name="ticket" value="{{ticket}}" required>
                         {% if ticket2 %}
-                        <input type="hidden" name="ticket2" value="{{ticket2}}" required>
+                            <input type="hidden" name="ticket2" value="{{ticket2}}" required>
                         {% endif %}
                         <div class="row payment-amount-div">
                             <div class="form-group">
                                 <label for="payment_amount">PAYMENT AMOUNT</label>
-                                <input type="text" class="form-control" id="payment_amount" name="fare"
-                                    value="৳ {{fare}}" disabled required>
+                                <input type="text" class="form-control" id="payment_amount" name="fare" value="৳ {{fare}}" disabled required>
                             </div>
                         </div>
                         <div class="row card-no-div">
                             <div class="form-group">
                                 <label for="card_number">CARD NUMBER</label>
                                 <div class="input-group">
-                                    <input type="tel" pattern="[0-9]*" class="form-control" id="card_number"
-                                        name="cardNumber" autocomplete="off" maxlength="19"
-                                        placeholder="Enter card number" required>
-                                    <!--onkeypress="return isNumericValue(event);"-->
+                                    <input type="tel" pattern="[0-9]*" class="form-control" id="card_number" name="cardNumber" autocomplete="off" maxlength="19" placeholder="Enter card number" required> <!--onkeypress="return isNumericValue(event);"-->
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2">
                                         </span>
                                     </div>
                                 </div>
-
+                               
                             </div>
                         </div>
                         <div class="row card-holder-div">
                             <div class="form-group">
                                 <label for="card_holder_name">CARD HOLDER'S NAME</label>
-                                <input type="text" name="cardHolderName" class="form-control" id="cardHolderName"
-                                    placeholder="Enter name" required>
+                                <input type="text" name="cardHolderName" class="form-control" id="cardHolderName" placeholder="Enter name" required>
                             </div>
                         </div>
                         <div class="row expiry-cvv">
@@ -114,9 +100,7 @@
                                 <div class="right-col">
                                     <div class="form-group">
                                         <label for="cvv_number">CVV CODE</label>
-                                        <input type="password" pattern="[0-9]*" class="form-control" placeholder="CVV"
-                                            id="cvv_number" name="cvv" maxlength="3">
-                                        <!--onkeypress="return isNumericValue(event);"-->
+                                        <input type="password" pattern="[0-9]*" class="form-control" placeholder="CVV" id="cvv_number" name="cvv" maxlength="3">    <!--onkeypress="return isNumericValue(event);"-->
                                     </div>
                                 </div>
                             </div>
@@ -130,5 +114,4 @@
         </div>
     </div>
 </body>
-
 </html>

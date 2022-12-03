@@ -401,55 +401,6 @@ def bookings(request):
     else:
         return HttpResponseRedirect(reverse('login'))
 
-
-@csrf_exempt
-def cancel_ticket(request):
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-            ref = request.POST['ref']
-            try:
-                ticket = Ticket.objects.get(ref_no=ref)
-                if ticket.user == request.user:
-                    ticket.status = 'CANCELLED'
-                    ticket.save()
-                    return JsonResponse({'success': True})
-                else:
-                    return JsonResponse({
-                        'success': False,
-                        'error': "User unauthorised"
-                    })
-            except Exception as e:
-                return JsonResponse({
-                    'success': False,
-                    'error': e
-                })
-        else:
-            return HttpResponse("User unauthorised")
-    else:
-        return HttpResponse("Method must be POST.")
-
-
-def resume_booking(request):
-    if request.method == 'POST':
-        if request.user.is_authenticated:
-            ref = request.POST['ref']
-            ticket = Ticket.objects.get(ref_no=ref)
-            if ticket.user == request.user:
-                return render(request, "flight/payment.html", {
-                    'fare': ticket.total_fare,
-                    'ticket': ticket.id
-                })
-            else:
-                return HttpResponse("User unauthorised")
-        else:
-            return HttpResponseRedirect(reverse("login"))
-    else:
-        return HttpResponse("Method must be post.")
-
-
-
-
-
 def hotel(request):
     all_location = Hotel.objects.values_list(
         'location', 'id').distinct().order_by()
