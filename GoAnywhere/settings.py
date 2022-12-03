@@ -26,9 +26,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'flight',
     'payment',
-    'import_export',
-
-
 ]
 
 MIDDLEWARE = [
@@ -148,12 +145,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
-
-CORS_ALLOWED_ORIGINS = [
-    # "http://localhost:8080",
-    # "http://127.0.0.1:9000",
-]
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
