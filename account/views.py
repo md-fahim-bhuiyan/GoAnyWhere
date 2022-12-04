@@ -493,5 +493,5 @@ def terms_and_conditions(request):
     return render(request, 'terms.html')
 
 
-def about_us(request):
+def aboutus(request):
     return render(request, 'about.html')
