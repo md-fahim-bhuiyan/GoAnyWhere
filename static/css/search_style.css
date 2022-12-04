@@ -351,24 +351,15 @@
 
 
 .selection-div{
-    position: fixed;
-    z-index: 99;
     background-image: linear-gradient(135deg, rgba(220, 20, 60, .85), rgba(184,1,123,.85));
     height: 10%;
-    width: 100%;
-    bottom: 0;
+    width: 80%;
     box-shadow:  0 0 15px rgba(0, 0, 0, .2);
     display: flex;
     color: white;
     justify-content: space-evenly;
 }
-.selection-div > div{
-    text-align: center;
-    display: flex;
-}
-.selection-div > div > div{
-    margin: auto;
-}
+
 
 .flight1-radio, .flight2-radio{
     transform: scale(1.5);
@@ -477,15 +468,4 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-}
-
-@media (max-width: 376px){
-    .section1{
-        font-size: 1em;
-    }
-    .query-result-div .container{
-        padding-right: 0;
-        padding-left: 0;
-    }
-    
 }
