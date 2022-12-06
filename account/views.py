@@ -28,7 +28,10 @@ def get_tokens_for_user(user):
 
 
 def home(request):
-    return render(request, 'home.html')
+    data = {
+        'current_year': datetime.now().year
+    }
+    return render(request, 'home.html', data)
 
 
 class UserRegistrationView(APIView):

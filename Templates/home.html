@@ -1,316 +1,269 @@
 {% load static %}
 {% static "images" as baseUrl %}
 
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GoAnywhere</title>
-  <!-- <link rel="stylesheet" href="home.css"> -->
-  <link rel="shortcut icon" type="image/x-icon" href="{% static 'hotel.png' %} ">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-    crossorigin="anonymous" />
-  <style>
-    * {
-      padding: 0px;
-      margin: 0px;
-    }
-
-    .nav-1 {
-      display: flex;
-      width: 80%;
-      margin: auto;
-
-    }
-
-    .part-1 {
-      font-size: 20px;
-      margin-left: 20px;
-
-    }
-
-    .part-2 {
-      margin-top: 10px;
-    }
-
-    .part-2 li {
-      border: 1px solid black;
-      border-radius: 15px;
-      padding: 10px;
-      /* margin-bottom: 2px; */
-      display: inline-block;
-      background-color: #9B59B6;
-    }
-
-    .part-2 li a {
-
-      text-decoration: none;
-      color: aliceblue;
-    }
-
-    .container_cus {
-      width: 90%;
-      margin: auto;
-    }
-
-    .nav-2 {
-      width: 100%;
-      display: flex;
-    }
-
-    .logo {
-      font-family: 'Kolker Brush', cursive;
-      font-size: 40px;
-      padding-left: 20px;
-    }
-
-    .list {
-      width: 30%;
-      margin-top: 20px;
-      justify-content: space-between;
-    }
-
-    .list li {
-      display: inline-block;
-    }
-
-    .list li a {
-      text-decoration: none;
-      color: rgb(43, 81, 114);
-      font-size: 20px;
-
-    }
-
-    .design_nav {
-      border: 0px solid;
-      border-radius: 10px;
-    }
-
-    .body {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      height: 800px;
-
-    }
-
-    .text {
-      width: 25%;
-      text-align: center;
-      align-items: center;
-      margin-top: 300px;
-      justify-content: center;
-      height: 100%;
-    }
-
-    .image {
-      width: 75%;
-
-    }
-
-
-    .search {
-      position: relative;
-      box-shadow: 0 0 40px rgba(51, 51, 51, .1);
-
-    }
-
-    .search input {
-
-      height: 60px;
-      text-indent: 25px;
-      border: 2px solid #d6d4d4;
-
-
-    }
-
-
-    .search input:focus {
-
-      box-shadow: none;
-      border: 2px solid blue;
-
-
-    }
-
-    .search .fa-search {
-
-      position: absolute;
-      top: 20px;
-      left: 16px;
-
-    }
-
-    .search button {
-
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      height: 50px;
-      width: 110px;
-      background: blue;
-
-    }
-
-    .card_design h1 {
-      text-align: center;
-      font-size: 30px;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    .center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <title>GoAnywhere</title>
 </head>
-
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <div class="part-1">
-              <div class="pl-5">
-                Follow Us <a class="text-dark" target="blank" href="https://www.facebook.com/fahim.bhuiyan.ringu"><i
-                    class="fab fa-facebook"></i></a>
-                <a class="text-dark" target="blank"
-                  href="https://www.instagram.com/fahimbhuiyan05fahim.bhuiyan.ringu"><i
-                    class="fab fa-instagram"></i></a>
-                <a class="text-dark" target="blank" href="https://www.youtube.com/channel/UCFNon0X8cCFdyIqAgo8nsqA*"><i
-                    class="fab fa-youtube"></i></a>
-                <a class="text-dark" target="blank" href="https://twitter.com/fahimbhuiyan05"><i
-                    class="fab fa-twitter"></i></a>
-                <a class="text-dark" target="blank" href="https://t.me/fahimbhuiyan05"><i
-                    class="fab fa-telegram"></i></a>
-                <i class="fa fa-phone"></i>01517328176
-              </div>
+    <div class="nav1">
+        <div class="part1">
+            <div class="email">
+                <ul>
+                    <li>
+                        <a href="mailto:fahimbhuiyan05@gmail.com" itemprop="email"><i class="fas fa-envelope"></i>
+                            fahimbhuiyan05@gmail.com</a>
+                    </li>
+                    <li style="padding-left: 5px;">
+                        <a href="tel:+8801517328176" itemprop="telephone"><i class="fas fa-phone"></i>
+                            +8801517328176</a>
+                    </li>
+                </ul>
             </div>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <div class="part-2">
+        </div>
+        <div class="part2">
             <ul>
-              {% if user.is_authenticated %}
-              <li><a href='profile'>Hello, {{user.name}}</a></li>
-              <li><a href="logout">logout</a></li>
-              {%else%}
-              <li><a href="login">Login</a></li>
-              <li><a href="register">Register</a></li>
-              {%endif%}
+                <li><a href=""><i class="fab fa-viber"></i></a></li>
+                <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href=""><i class="fab fa-facebook-messenger"></i></a></li>
+                <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                <li><a href=""><i class="fab fa-skype"></i></a></li>
             </ul>
-          </div>
-        </form>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container_cus">
-    <nav class="navbar navbar-light design_nav" style="background-color: #DDDADA;">
-      <div class="container-fluid">
-        <a class="navbar-brand logo" style="font-size: 35px;">GoAnywhere</a>
-        <ul class="d-flex list">
-          <li><a href="home">Home</a></li>
-          <li><a href="Trips">Trips</a></li>
-          <li><a href="contact">Contact</a></li>
-          <li><a href="aboutus">About Us</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="body">
-      <div class="text">
-        <h1 style="color: #4E19BF; font-size:60px;     font-family: 'Kolker Brush', cursive;">
-          GoAnywhere
-        </h1>
-        <h3 style="color: #0500FA; font-size:36px;     font-family: 'Irish Grover';">
-          PLAN YOUR TRAVEl
-          WITH THE BEST
-        </h3>
-        <button type="button" class="btn btn-warning" style="font-size: 30px; color:#fff">NEXT STOP</button>
-      </div>
-      <div class="image">
-        <img src="{% static  'home1.jpg'%}" alt="" style="width: 100%; height: 100%; border: 0px solid;
-                border-radius: 0px 5px 10px 250px;">
-      </div>
+        </div>
+        <div class="part3">
+          {% if user.is_authenticated %}
+          <i class="fas fa-user" style="color:white"></i><a href='profile'> {{user.name  |upper}} </a>  &nbsp;
+          <i class="fas fa-sign-out-alt" style="color:white"></i><a href="logout">LOGOUT</a>
+          {%else%}
+          <i class="fas fa-sign-in-alt" style="color:white"></i><a href="login"> Login</a>&nbsp;
+          <i class="fas fa-user-plus"style="color:white"></i><a href="register"> Register</a>
+          {%endif%}
+        </div>
     </div>
 
-    <div class="row height d-flex justify-content-center align-items-center p-5">
-
-      <div class="col-md-8">
-
-        <div class="search">
-          <form class=" search_form" action="" method="POST">
-            {%csrf_token%}
-            <i class="fa fa-search"></i>
-            <input type="text" class="form-control" placeholder="Where To" style="font-size: 20px;">
-
-            <a href="{% url 'index' %}"> <button class="btn btn-primary">Search</button></a>
-          </form>
+    <div class="nav2">
+        <div class="title">
+            <a href="home"> GoAnywhere</a>
         </div>
-
-      </div>
-
+        <div class="link">
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="index">Flight</a></li>
+                <li><a href="hotel">Hotel</a></li>
+                <li><a href="aboutus">About</a></li>
+                <li><a href="contact">Contact</a></li>
+            </ul>
+        </div>
     </div>
 
-    <div class="card_design">
-      <div class="row m-5" style="display: flex;  justify-content: space-between;">
-        <!-- <div class="col-1"></div> -->
-        <div class="col-3 pl-5">
-          <div class="card" style="width: 25rem;">
-            <img src="{% static  'plane.jpg'%} " class="card-img-top" alt="FLIGHT" style="width: 100%;" class="center">
-            <div class="card-body">
-              <a href="{% url 'index' %}">
-                <h1>FLIGHT</h1>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-1"></div> -->
-        <div class="col-3">
-
-          <div class="card" style="width: 25rem;">
-            <img src="{% static  'hotel.png'%}" class="card-img-top" alt="HOTEL" style="width: 85%;" class="center">
-            <div class="card-body">
-              <a href="{% url 'hotel' %}">
-                <h1>HOTEL</h1>
-              </a>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-1"></div> -->
-        <div class="col-3 pl-5">
-          <div class="card" style="width: 25rem;">
-            <img src="{% static  'man.jpg'%}" class="card-img-top" alt="TRAVEl AGENT" style="width: 75%;"
-              class="center">
-            <div class="card-body">
-              <h1>TRAVEl AGENT</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="banner">
-      <img src="{% static  'home2.jpg'%}" alt=""
-        style="width: 100%;  height:500px; border: 2px solid white;  border-radius: 18px;">
+        <div id="" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/page-banner.jpg'%}" alt="Los Angeles" class="d-block w-100">
+                    <div class="carousel-caption titletext">
+                        <h1>WELCOME TO GOANYWHERE </h1>
+                        <p>With our advance search feature you can now find the trips for you...</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/page-banner.jpg'%}" alt="Chicago" class="d-block w-100">
+                    <div class="carousel-caption titletext">
+                        <h1>WELCOME TO GOANYWHERE </h1>
+                        <p>With our advance search feature you can now find the trips for you...</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/page-banner.jpg'%}" alt="New York" class="d-block w-100">
+                    <div class="carousel-caption titletext">
+                        <h1>WELCOME TO GOANYWHERE </h1>
+                        <p>With our advance search feature you can now find the trips for you...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
     </div>
-  </div>
+
+    <div>
+        <div class="item">
+            <h1>Our Services</h1>
+        </div>
+        <div class="box">
+            <div class="flight">
+                <a href="index">
+                    <div class="card card_item p-4" style="width:400px">
+                        <img class="card-img-top" src="{% static 'plane.png'%}" alt="Card image" style="width:100%">
+                        <h4 class="title_card">Flight</h4>
+                    </div>
+                </a>
+            </div>
+            <div class="hotel">
+                <a href="hotel">
+                    <div class="card card_item p-4" style="width:400px">
+                        <img class="card-img-top" src="{% static 'hotel.jpg'%}" alt="Card image" style="width:100%;">
+                        <h4 class="title_card">Hotel</h4>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
+    <div class="image pt-3 ">
+        <img src="{% static 'home2.jpg'%}" alt="" style="width:100%; height: 300px;">
+    </div>
+    <!-- Gallery -->
+    <div class="gallery m-5">
+    <div class="title_gallery p-3">
+        <h3>Gallery</h3>
+    </div>
+    <div class="gallery-images-section">
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img1.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img2.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img3.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img4.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img5.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img6.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img7.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img8.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img9.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img10.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img11.jpg'%}" alt="gallery-images">
+        </div>
+        <div class="gallery-img-wrap">
+            <img src="{% static 'img/gallery-img12.jpg'%}" alt="gallery-images">
+        </div>
+    </div>
+    </div>
+    <!-- Gallery -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
+
+    <!-- favorite destination -->
+    <div class="favorite_destination">
+        <div class="title_gallery p-3">
+        <h3>favorite destination</h3>
+        </div>
+    </div>
+    <!-- favorite destination -->
+
+    <!-- footer -->
+    <div class="quary">
+        <div class="text_part">
+            Any Queries? Ask us a question at 
+            <a href="tel:+8801517328176" itemprop="telephone"><i class="fas fa-phone"></i> +8801517328176 </a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="about">
+            About
+            <hr class="about_hr">
+            <p><samp class="title">GoAnywhere</samp> is a Online Travel Agency. </p>
+            <hr class="normal_hr">
+            <a href="tel:+8801517328176" itemprop="telephone"><i class="fas fa-phone"></i>
+                +8801517328176</a>
+            <hr class="normal_hr">
+            <a href="mailto:fahimbhuiyan05@gmail.com" itemprop="email"><i class="fas fa-envelope"></i>
+                fahimbhuiyan05@gmail.com</a>
+                <hr class="normal_hr">
+                <i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh
+        </div>
+        <div class="link_im">
+            Importent Link
+            <hr class="link_hr">
+            <ul type="square">
+                <li><a href="home">Home</a></li>
+                <li><a href="index">Flight</a></li>
+                <li><a href="hotel">Hotel</a></li>
+                <li><a href="flight/bookings">My Booking</a></li>
+                <li><a href="aboutus">About Us</a></li>
+                <li><a href="privacy-policy">Privacy Policy</a></li>
+                <li><a href="terms-and-conditions">Terms & Conditions</a></li>
+                <li><a href="contuct">Contuct Us</a></li>
+            </ul>
+        </div>
+        <div class="contuct_us">
+            Contuct Us 
+            <hr class="about_hr">
+            <div>
+                <div class="contact-form-wrapper d-flex">
+                  <form action="contact" class="contact-form" method="POST">
+                    {% csrf_token %}
+                    <div>
+                      <input type="text" class="form-control rounded border-white mb-3 form-input" name="name" id="name"
+                        placeholder="Name" required>
+                    </div>
+                    <div>
+                      <input type="email" class="form-control rounded border-white mb-3 form-input" name="email" placeholder="Email"
+                        required>
+                    </div>
+                    <div>
+                      <textarea id="message" class="form-control rounded border-white mb-3 form-text-area" name="message" rows="5"
+                        cols="30" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="submit-button-wrapper">
+                      <input class="form-control rounded border-white mb-3 form-input" type="submit" value="Send">
+                    </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="copyright" style="text-align: center; padding:5px;">
+      <p style="margin: 10px 0; font-size: .8em;">&#169; {{current_year}} GoAnywhere. All rights reserved.</p>
+    </div>
+    <!-- footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
