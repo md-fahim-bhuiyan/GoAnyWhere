@@ -1,0 +1,44 @@
+<style>
+    a {
+        text-decoration: none;
+    }
+    table, th, td {
+        border: 1px solid;
+        text-align: center;
+      }
+      table {
+        width: 100%;
+      }
+      
+      th {
+        height: 70px;
+      }
+      h3{
+        text-align: center;
+      }
+</style>
+
+
+<h3>My Bookings </h3>
+<table class="table">
+    <thead>
+        <th>Name</th>
+        <th>Room</th>
+        <th>Location</th>
+        <th>Person</th>
+        <th>Check in</th>
+        <th>Check out</th>
+        <th>Price</th>
+    </thead>
+    {% for each_booking in bookings %}
+    <tr>
+        <td>{{each_booking.guest.name}}</td>
+        <td>{{each_booking.room.roomnumber}}</td>
+        <td>{{each_booking.room.hotel.location}}</td>
+        <td>{{each_booking.room.capacity}}</td>
+        <td>{{each_booking.check_in}}</td>
+        <td>{{each_booking.check_out}}</td>
+        <td>{{each_booking.room.price}}</td>
+    </tr>
+    {% endfor %}
+</table>

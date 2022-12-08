@@ -79,7 +79,7 @@ class Place(models.Model):
     country = models.CharField(max_length=64)
 
     def __str__(self):
-        return f"{self.city}, {self.country} ({self.code})"
+        return self.airport
     class Meta:
         db_table='Place'
 

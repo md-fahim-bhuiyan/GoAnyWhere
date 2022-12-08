@@ -20,10 +20,12 @@ urlpatterns = [
     path('flight/ticket/print',views.get_ticket, name="getticket"),
     path('flight/bookings', views.bookings, name="bookings"),
     path('contact', views.contact, name="contact"),
+    path('place', views.place, name="place"),
     path('privacy-policy', views.privacy_policy, name="privacypolicy"),
     path('terms-and-conditions', views.terms_and_conditions, name="termsandconditions"),
     path('aboutus', views.aboutus, name="aboutus"),
     path('hotel', views.hotel,name="hotel"),
     path('user/book-room', views.book_room_page,name="bookroompage"),
     path('user/book-room/book', views.book_room,name="bookroom"),
+    path('user/bookings', views.user_bookings,name="dashboard"),
 ]

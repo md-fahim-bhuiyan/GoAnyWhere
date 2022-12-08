@@ -16,7 +16,8 @@ from .models import *
 from GoAnywhere.utils import render_to_pdf, createticket
 from .constant import FEE
 from django.contrib.auth.decorators import login_required
-from .forms import Contact
+from .forms import Contact, Place
+from django.contrib.auth.decorators import user_passes_test
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -483,6 +484,30 @@ def contact(request):
     context = {'form': form}
     return render(request, 'contact.html', context)
 
+
+# @user_passes_test()
+def place(request):
+    if request.method == 'POST':
+        form = Place(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
+    form = Place()
+    context = {'form': form}
+    return render(request, 'flight/addplace.html', context)
+
+
+
+@login_required 
+def user_bookings(request):
+    if request.user.is_authenticated == False:
+        return redirect('login')
+    user = User.objects.all().get(id=request.user.id)
+    print(f"request user id ={request.user.id}")
+    bookings = Reservation.objects.all().filter(guest=user)
+    if not bookings:
+        messages.warning(request,"No Bookings Found")
+    return HttpResponse(render(request,'hotel/mybookings.html',{'bookings':bookings}))
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
