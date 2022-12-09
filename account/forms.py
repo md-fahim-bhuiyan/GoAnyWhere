@@ -17,7 +17,7 @@ class HotelF(ModelForm):
         model = Hotel
         fields = '__all__'
 
-class Room(ModelForm):
+class RoomF(ModelForm):
     class Meta:
         model = Room
         fields = '__all__'

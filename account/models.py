@@ -145,13 +145,10 @@ TICKET_STATUS = (
 
 
 class Ticket(models.Model):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="bookings", blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bookings", blank=True, null=True)
     ref_no = models.CharField(max_length=6, unique=True)
-    passengers = models.ManyToManyField(
-        Passenger, related_name="flight_tickets")
-    flight = models.ForeignKey(
-        Flight, on_delete=models.CASCADE, related_name="tickets", blank=True, null=True)
+    passengers = models.ManyToManyField(Passenger, related_name="flight_tickets")
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name="tickets", blank=True, null=True)
     flight_ddate = models.DateField(blank=True, null=True)
     flight_adate = models.DateField(blank=True, null=True)
     flight_fare = models.FloatField(blank=True, null=True)
@@ -203,7 +200,6 @@ class Room(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
     status = models.CharField(choices=ROOM_STATUS, max_length=15)
     roomnumber = models.IntegerField()
-
     def __str__(self):
         return self.hotel.name
     class Meta:

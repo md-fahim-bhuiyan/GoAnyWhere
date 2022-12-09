@@ -29,5 +29,7 @@ urlpatterns = [
     path('user/book-room/book', views.book_room,name="bookroom"),
     path('user/bookings', views.user_bookings,name="dashboard"),
     path('addhotel', views.addhotel,name="addhotel"),
-    # path('addroom', views.addroom,name="addroom"),
+    path('addroom', views.addroom,name="addroom"),
+    path('addrooms', views.addrooms,name="addrooms"),
+    path('addflight', views.addflight, name='addflight')
 ]

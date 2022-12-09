@@ -1,0 +1,7 @@
+<input type="text" list="place" placeholder="place" class="form-control">
+
+<datalist id="place">
+    {% for place in place %}
+    <option value="{{place.name}}"></option>
+    {%endfor%}
+</datalist>

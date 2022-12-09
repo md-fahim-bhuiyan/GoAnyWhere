@@ -16,7 +16,7 @@ from .models import *
 from GoAnywhere.utils import render_to_pdf, createticket
 from .constant import FEE
 from django.contrib.auth.decorators import login_required
-from .forms import Contact, PlaceF, HotelF
+from .forms import Contact, PlaceF, HotelF,RoomF
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -202,7 +202,7 @@ def flight(request):
             except:
                 max_price2 = 0  
                 min_price2 = 0      
-                
+
     if trip_type == '2':
         return render(request, "flight/search.html", {
             'flights': flights,
@@ -538,6 +538,23 @@ def addhotel(request):
     form = HotelF()
     context = {'form': form}
     return render(request, 'hotel/addhotel.html', context)
+
+    
+def addroom(request):
+    hotel_name = Hotel.objects.values_list('name', 'id').distinct().order_by()
+    data = {'hotel_name': hotel_name}
+    return render(request, 'hotel/addroom.html',data)
+
+def addrooms(request):
+    if request.method == 'POST':
+        form = RoomF(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
+
+def addflight(request):
+   return render(request, 'flight/addflight.html')
+
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')

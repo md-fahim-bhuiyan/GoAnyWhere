@@ -28,13 +28,13 @@
 
 .query-data-div{
     min-height: 11vh;
-    background-color: crimson;
-    background-image: linear-gradient(135deg, crimson, #b8017b);
+    background-color: rgb(173, 157, 160);
+    background-image: linear-gradient(135deg, rgb(190, 165, 170), #b8017b);
     display: flex;
 }
 .query-data-div2{
     background-color: crimson;
-    background-image: linear-gradient(135deg, crimson, #b8017b);
+    background-image: linear-gradient(135deg, rgb(221, 208, 211), #b8017b);
     display: none;
 }
 .query-data-div2 > .container{
@@ -75,12 +75,12 @@
     display: flex;
 }
 .trip-places > div{
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 8px ;
+    padding-right: 8px;
 }
 .trip-time > div{
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 8px;
+    padding-right: 8px ;
 }
 .trip-places{
     flex: 1;
@@ -105,19 +105,19 @@
     padding: 0;
 }
 .spl-btn2:hover{
-    color: white!important;
-    background-color: transparent!important;
+    color: white;
+    background-color: transparent;
 }
 .spl-btn2:active{
-    background-color: transparent!important;
-    color: white!important;
+    background-color: transparent;
+    color: white;
 }
 .spl-btn2:focus{
-    box-shadow: none!important;
+    box-shadow: none;
 }
 .trip-modify button:hover, button:active{
     background-color: rgb(255, 235, 245);
-    color: rgb(189, 4, 116);
+    color: rgb(190, 128, 166);
 }
 .trip-modify button:focus{
     box-shadow: 0 0 0 0.2rem rgba(255,255,255,.3);
@@ -351,7 +351,7 @@
 
 
 .selection-div{
-    background-image: linear-gradient(135deg, rgba(220, 20, 60, .85), rgba(184,1,123,.85));
+    background-image: linear-gradient(135deg, rgba(173, 158, 161, 0.85), rgba(184,1,123,.85));
     height: 10%;
     width: 80%;
     box-shadow:  0 0 15px rgba(0, 0, 0, .2);
@@ -392,11 +392,6 @@
     border: .5px dotted rgb(220, 45, 60);
     transition-duration: .4s;
 }
-
-
-
-
-
 
 .tabs{
     margin-top:50px;
@@ -440,7 +435,7 @@
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     background: #b80190;
-    background: linear-gradient(45deg, crimson 0%, #b80190 100%);
+    background: linear-gradient(45deg, rgb(179, 172, 174) 0%, #b80190 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05abe0', endColorstr='#8200f4',GradientType=1 );
   }
 
@@ -461,7 +456,7 @@
 }
 
 .selection-media{
-    display: none!important;
+    display: none;
     width: 100%;
 }
 .selection-media > div{

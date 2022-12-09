@@ -1,7 +1,7 @@
 .section1{
     background-color: rgba(10, 0, 0, .05);
 }
-.col-8 > div, .col-4 > div{
+.col-8  div, .col-4  div{
     background-color: #fff;
 }
 
@@ -26,7 +26,7 @@ h5{
     overflow: hidden;
 }
 
-.col-8 > div > hr, .col-4 > div > hr{
+.col-8  div  hr, .col-4  div  hr{
     margin: 0px -13px;
     border-top: 0.5px solid rgba(0,0,0,.1);
 }
