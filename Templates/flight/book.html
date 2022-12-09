@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
   <link rel="stylesheet" href="{% static 'css/layout_style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
@@ -45,6 +46,7 @@
                     </div>
                     <div class="row ticket-details-div">
                         <div class="col-3 airline-name">
+                            <i class="fas fa-plane-departure"></i>                        
                             <div class="brand">{{flight1.airline}}</div>
                             <div class="plane-name">{{flight1.plane}}</div>
                         </div>
@@ -280,26 +282,6 @@
                                     <option data-countryCode="SA" value="966">Saudi Arabia (+966)</option>
                                     <option data-countryCode="SN" value="221">Senegal (+221)</option>
                                     <option data-countryCode="CS" value="381">Serbia (+381)</option>
-                                    <option data-countryCode="SC" value="248">Seychelles (+248)</option>
-                                    <option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
-                                    <option data-countryCode="SG" value="65">Singapore (+65)</option>
-                                    <option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
-                                    <option data-countryCode="SI" value="386">Slovenia (+386)</option>
-                                    <option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
-                                    <option data-countryCode="SO" value="252">Somalia (+252)</option>
-                                    <option data-countryCode="ZA" value="27">South Africa (+27)</option>
-                                    <option data-countryCode="ES" value="34">Spain (+34)</option>
-                                    <option data-countryCode="LK" value="94">Sri Lanka (+94)</option>
-                                    <option data-countryCode="SH" value="290">St. Helena (+290)</option>
-                                    <option data-countryCode="KN" value="1869">St. Kitts (+1869)</option>
-                                    <option data-countryCode="SC" value="1758">St. Lucia (+1758)</option>
-                                    <option data-countryCode="SD" value="249">Sudan (+249)</option>
-                                    <option data-countryCode="SR" value="597">Suriname (+597)</option>
-                                    <option data-countryCode="SZ" value="268">Swaziland (+268)</option>
-                                    <option data-countryCode="SE" value="46">Sweden (+46)</option>
-                                    <option data-countryCode="CH" value="41">Switzerland (+41)</option>
-                                    <option data-countryCode="SI" value="963">Syria (+963)</option>
-                                    <option data-countryCode="TW" value="886">Taiwan (+886)</option>
                                     <option data-countryCode="TJ" value="7">Tajikstan (+7)</option>
                                     <option data-countryCode="TH" value="66">Thailand (+66)</option>
                                     <option data-countryCode="TG" value="228">Togo (+228)</option>
@@ -337,7 +319,8 @@
                             </div>
                             <div class="col-6 ci">
                                 Email
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                <input type="email" name="email" class="form-control" placeholder="Email"  disabled
+                                value={{user.email}}>
                             </div>
                         </div>
                     </div>

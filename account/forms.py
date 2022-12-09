@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Contact, Place
+from .models import Contact, Place, Hotel, Room
 
 
 class Contact(ModelForm):
@@ -7,7 +7,17 @@ class Contact(ModelForm):
         model = Contact
         fields = '__all__'
 
-class Place(ModelForm):
+class PlaceF(ModelForm):
     class Meta:
         model = Place
+        fields = '__all__'
+
+class HotelF(ModelForm):
+    class Meta:
+        model = Hotel
+        fields = '__all__'
+
+class Room(ModelForm):
+    class Meta:
+        model = Room
         fields = '__all__'

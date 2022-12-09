@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.typekit.net/cav5lva.css">
   <link rel="stylesheet" href="{% static 'css/layout_style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="crossorigin="anonymous" />
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  
     <link rel="stylesheet" href="{% static 'css/search_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/search2_style.css' %}">
     <script src="{% static 'js/search2.js' %}"></script>
@@ -35,8 +35,7 @@
     </style>
  </head>
 <body>
-    <div class="container pt-2">
-        <div class="frame">
+    <div class="container">
     <section class="section section1">
         <div class="query-data-div">
             <div class="container">
@@ -47,8 +46,10 @@
                     </div>
                     <div class="trip-type-div white">
                         <div class="small-label">&nbsp;</div>
-                        {% if trip_type == '2' %}                           
+                        {% if trip_type == '2' %}   
+                        <i class="fas fa-plane-departure"></i>                        
                         {% else %}
+                        <i class="fas fa-plane-departure"></i>
                         {% endif %}
                     </div>
                     <div class="to-div text-align-right">
@@ -106,6 +107,7 @@
                         <input type="hidden" name="SeatClass" value="{{seat|lower}}">
                         <input type="hidden" name="TripType" value="{{trip_type}}">
                         <button class="btn spl-btn2" type="submit">
+                        
                         </button>
                     </form>
                 </div>
@@ -403,14 +405,11 @@
                                                             </button>
                                                         </form>
                                                     {% endif %}
-
-
                                                     
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 {% endfor %}
                             </div>
                         </div>
@@ -431,7 +430,7 @@
         </div>
         {% if trip_type == '2' and flights %}
             <div class="query-result-div-2" style="display: none;">
-                <div class="container">
+                <!-- <div class="container"> -->
                     <div class="row">
                         {% if flights2 %}
                             <div class="col-lg-3 filter-div">
@@ -587,11 +586,9 @@
                                     </div>
                                     <div class="sort-price">
                                         Price
-                                        <span><!--&#8593;--><!--&#8595;--></span>
+                                        <span></span>
                                     </div>
                                 </div>
-
-
                                 {% if flights2 %}
                                     <div class="sort-div">
                                     <div class="flight-company">
@@ -614,13 +611,8 @@
                                     </div>
                                 </div>
                                 {% endif %}
-
-
-
-
                                 <div id="flights_div2">
                                     {% for flight2 in flights2 %}
-
                                         <div class="each-flight-div-box show">
                                             <div class="each-flight-div" onclick="media_click(this)">
                                                 <div class="flight-company">
@@ -666,9 +658,6 @@
                                                         </h5>
                                                     </div>
                                                     <div class="flight-details-btn">
-
-
-
                                                         {% if trip_type == '2' %}
                                                             {% if forloop.couter == 1 %}checked{% endif %}
                                                             <input type="radio" class="flight2-radio r-b" name="test2" value="{{flight2.id}}" data-plane='{{flight2.plane}}' data-depart='{{flight2.depart_time|time:"H:i"}}' data-arrive='{{flight2.arrival_time|time:"H:i"}}' data-fare="{% if seat == 'Economy' %} {{flight2.economy_fare}} {% elif seat == 'Business' %} {{flight2.business_fare}} {% else %} {{flight2.first_fare}} {% endif %}" {% if forloop.counter == 1 %}checked{% endif %}>

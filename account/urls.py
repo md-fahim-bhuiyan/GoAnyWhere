@@ -28,4 +28,6 @@ urlpatterns = [
     path('user/book-room', views.book_room_page,name="bookroompage"),
     path('user/book-room/book', views.book_room,name="bookroom"),
     path('user/bookings', views.user_bookings,name="dashboard"),
+    path('addhotel', views.addhotel,name="addhotel"),
+    # path('addroom', views.addroom,name="addroom"),
 ]

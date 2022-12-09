@@ -79,10 +79,10 @@ class Place(models.Model):
     country = models.CharField(max_length=64)
 
     def __str__(self):
-        return self.airport
+        return f"{self.city}, {self.country} ({self.code})"
+
     class Meta:
         db_table='Place'
-
 
 class Week(models.Model):
     number = models.IntegerField()
@@ -95,13 +95,10 @@ class Week(models.Model):
 
 
 class Flight(models.Model):
-    origin = models.ForeignKey(
-        Place, on_delete=models.CASCADE, related_name="departures")
-    destination = models.ForeignKey(
-        Place, on_delete=models.CASCADE, related_name="arrivals")
+    origin = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="departures")
+    destination = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="arrivals")
     depart_time = models.TimeField(auto_now=False, auto_now_add=False)
-    depart_day = models.ManyToManyField(
-        Week, related_name="flights_of_the_day")
+    depart_day = models.ManyToManyField(Week, related_name="flights_of_the_day")
     duration = models.DurationField(null=True)
     arrival_time = models.TimeField(auto_now=False, auto_now_add=False)
     plane = models.CharField(max_length=24)
@@ -175,11 +172,11 @@ class Ticket(models.Model):
 
 
 class Hotel(models.Model):
-    name = models.CharField(max_length=30, default="")
+    name = models.CharField(max_length=30)
     owner = models.CharField(max_length=20)
     location = models.CharField(max_length=50)
-    state = models.CharField(max_length=50, default="")
-    country = models.CharField(max_length=50, default="")
+    state = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
@@ -189,8 +186,8 @@ class Hotel(models.Model):
 
 class Room(models.Model):
     ROOM_STATUS = (
-        ("1", "available"),
-        ("2", "not available"),
+        ("1", "Available"),
+        ("2", "Not Available"),
     )
 
     ROOM_TYPE = (

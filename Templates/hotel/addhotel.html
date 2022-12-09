@@ -1,0 +1,35 @@
+<!-- name = models.CharField(max_length=30, default="")
+    owner = models.CharField(max_length=20)
+    location = models.CharField(max_length=50)
+    state = models.CharField(max_length=50, default="")
+    country = models.CharField(max_length=50, default="") -->
+
+
+<form action="addhotel" class="contact-form" method="POST">
+    {% csrf_token %}
+    <h5 class="title">Add New Hotel</h5>
+    <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" name="name" id="name"
+            placeholder="Hotel Name" required>
+    </div>
+    <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" name="owner" id="owner"
+            placeholder="owner" required>
+    </div>
+    <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" name="location" id="location"
+            placeholder="Location" required>
+    </div>
+    <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" name="state" id="state"
+            placeholder="City" required>
+    </div>
+    <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" name="country" id="country"
+            placeholder="Country" required>
+    </div>
+
+    <div class="submit-button-wrapper">
+        <input type="submit" value="Send">
+    </div>
+</form>
