@@ -2,90 +2,75 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/ico" href="/static/img/favicon.ico">
     <title>e-Ticket | GoAnywhere</title>
     <style>
-        @page {
+        @page{
             margin: 37px 50px;
         }
-
-        * {
+        *{
             padding: 0;
             margin: 0;
             font-family: sans-serif;
         }
-
-        body {
+        body{
             padding: 7% 7%;
         }
-
-        nav {
+        nav{
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-
-        .logo {
+        .logo{
             display: flex;
         }
-
-        .header {
+        .header{
             text-align: right;
             font-size: 2em;
             font-weight: 600;
         }
-
-        li {
+        li{
             margin-top: 5px;
             margin-bottom: 5px;
         }
-
-        .col {
-            -ms-flex-preferred-size: 0;
-            flex-basis: 0;
-            -ms-flex-positive: 1;
-            flex-grow: 1;
-            max-width: 100%
+        .col{
+            -ms-flex-preferred-size:0;
+            flex-basis:0;
+            -ms-flex-positive:1;
+            flex-grow:1;
+            max-width:100%
         }
-
-        table {
+        table{
             margin-top: 0;
             width: 100%;
         }
-
-        .table {
+        .table{
             margin-top: 25px;
         }
-
-        tr {
+        tr{
             width: 100%;
         }
-
-        th {
+        th{
             width: 25%;
             text-align: left;
             padding: 5px 20px;
         }
-
-        td {
+        td{
             width: 25%;
             text-align: left;
             padding: 5px 15px;
         }
-
-        caption {
+        caption{
             text-align: left;
             background-color: #a9a9a9;
             color: white;
             padding: 8px 15px;
             font-weight: bold;
         }
-
-        .tr-caption {
+        .tr-caption{
             text-align: left;
             background-color: #a9a9a9;
             color: white;
@@ -94,17 +79,14 @@
             width: 100%;
             font-size: 1.4em;
         }
-
-        .tr-even {
+        .tr-even{
             background-color: #f0f0f0;
         }
-
-        .tr-odd {
+        .tr-odd{
             background-color: white;
         }
     </style>
 </head>
-
 <body>
     <nav>
         <div class="col logo" style="width: 50%;">
@@ -122,13 +104,12 @@
                     <td style="width: 100%;">TICKET INFORMATION</td>
                 </tr>
             </table>
-            <table cellspacing='0'>
+            <table cellspacing='0' >
                 <tr class="tr-odd">
                     <th>TICKET REFERENCE</th>
                     <td>{{ticket1.ref_no | upper}}</td>
                     <th>BOOKING DATE & TIME</th>
-                    <td>{{ticket1.booking_date | date:'d M y' | upper}}<br>{{ticket1.booking_date | time:'H:i' | upper}}
-                    </td>
+                    <td>{{ticket1.booking_date | date:'d M y' | upper}}<br>{{ticket1.booking_date | time:'H:i' | upper}}</td>
                 </tr>
                 <tr class="tr-even">
                     <th>FLIGHT DATE</th>
@@ -162,23 +143,23 @@
                     <th>CLASS</th>
                 </tr>
                 {% for passenger in ticket1.passengers.all %}
-                {% if forloop.counter|divisibleby:2 %}
-                <tr class="tr-odd">
-                    <td style="width: 20%; padding-left: 20px;">{{forloop.counter}}</td>
-                    <td style="width: 35%; padding-left: 20px;">{{passenger.first_name | upper}} {{passenger.last_name |upper}}</td>
-                    <td style="width: 20%; padding-left: 20px;">{{passenger.gender | upper}}</td>
-                    <td style="width: 25%; padding-left: 20px;">{{ticket1.seat_class | upper}}</td>
-                </tr>
-                {% else %}
-                <tr class="tr-even">
-                    <td style="width: 20%; padding-left: 20px;">{{forloop.counter}}</td>
-                    <td style="width: 35%; padding-left: 20px;">{{passenger.first_name | upper}} {{passenger.last_name |upper}}</td>
-                    <td style="width: 20%; padding-left: 20px;">{{passenger.gender | upper}}</td>
-                    <td style="width: 25%; padding-left: 20px;">{{ticket1.seat_class | upper}}</td>
-                </tr>
-                {% endif %}
+                    {% if forloop.counter|divisibleby:2 %}
+                        <tr class="tr-odd">
+                            <td style="width: 20%; padding-left: 20px;">{{forloop.counter}}</td>
+                            <td style="width: 35%; padding-left: 20px;">{{passenger.first_name | upper}} {{passenger.last_name | upper}}</td>
+                            <td style="width: 20%; padding-left: 20px;">{{passenger.gender | upper}}</td>
+                            <td style="width: 25%; padding-left: 20px;">{{ticket1.seat_class | upper}}</td>
+                        </tr>
+                    {% else %}
+                        <tr class="tr-even">
+                            <td style="width: 20%; padding-left: 20px;">{{forloop.counter}}</td>
+                            <td style="width: 35%; padding-left: 20px;">{{passenger.first_name | upper}} {{passenger.last_name | upper}}</td>
+                            <td style="width: 20%; padding-left: 20px;">{{passenger.gender | upper}}</td>
+                            <td style="width: 25%; padding-left: 20px;">{{ticket1.seat_class | upper}}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
-
+                    
             </table>
             <table class="table">
                 <tr class="tr-caption">
@@ -192,38 +173,38 @@
                     <th>AIRPORT/TERMINAL</th>
                 </tr>
                 <tr class="tr-even">
-                    <td style="width: 29%; padding-left: 20px;">{{ticket1.flight.airline |upper}}<br>{{ticket1.flight.plane | upper}}</td>
-                    <td style="width: 22%; padding-left: 20px;">{{ticket1.flight_ddate | date:'d M y' |upper}}<br>{{ticket1.flight.depart_time | time:'Hi'}}</td>
-                    <td style="width: 49%; padding-left: 20px;">{{ticket1.flight.origin.airport | upper}}({{ticket1.flight.origin.code | upper}})</td>
+                    <td style="width: 29%; padding-left: 20px;">{{ticket1.flight.airline | upper}}<br>{{ticket1.flight.plane | upper}}</td>
+                    <td style="width: 22%; padding-left: 20px;">{{ticket1.flight_ddate | date:'d M y' | upper}}<br>{{ticket1.flight.depart_time | time:'Hi'}}</td>
+                    <td style="width: 49%; padding-left: 20px;">{{ticket1.flight.origin.airport | upper}} ({{ticket1.flight.origin.code | upper}})</td>
                 </tr>
                 <tr class="tr-odd">
                     <td style="width: 29%; padding-left: 20px;"></td>
-                    <td style="width: 22%; padding-left: 20px;">{{ticket1.flight_adate | date:'d M y' |upper}}<br>{{ticket1.flight.arrival_time | time:'Hi'}}</td>
-                    <td style="width: 49%; padding-left: 20px;">{{ticket1.flight.destination.airport | upper}}({{ticket1.flight.destination.code | upper}})</td>
+                    <td style="width: 22%; padding-left: 20px;">{{ticket1.flight_adate | date:'d M y' | upper}}<br>{{ticket1.flight.arrival_time | time:'Hi'}}</td>
+                    <td style="width: 49%; padding-left: 20px;">{{ticket1.flight.destination.airport | upper}} ({{ticket1.flight.destination.code | upper}})</td>
                 </tr>
             </table>
             {% if ticket2 %}
-            <div>
-                <hr style="height: .1px; border: 0; background-color: grey;" noshade>
-                <table style="margin-top: 0;" cellspacing='0'>
-                    <tr class="tr-odd">
-                        <th>FLIGHT</th>
-                        <th>DEPART/ARRIVE</th>
-                        <th>AIRPORT/TERMINAL</th>
-                    </tr>
-                    <tr class="tr-even">
-                        <td style="padding-left: 20px; width: 29%;">{{ticket2.flight.airline |upper}}<br>{{ticket2.flight.plane | upper}}</td>
-                        <td style="padding-left: 20px; width: 22%;">{{ticket2.flight_ddate | date:'d M y' |upper}}<br>{{ticket2.flight.depart_time | time:'Hi'}}</td>
-                        <td style="padding-left: 20px; width: 49%;">{{ticket2.flight.origin.airport | upper}}({{ticket2.flight.origin.code | upper}})</td>
-                    </tr>
-                    <tr class="tr-odd">
-                        <td style="padding-left: 20px; width: 29%;"></td>
-                        <td style="padding-left: 20px; width: 22%;">{{ticket2.flight_adate | date:'d M y' |upper}}<br>{{ticket2.flight.arrival_time | time:'Hi'}}</td>
-                        <td style="padding-left: 20px; width: 49%;">{{ticket2.flight.destination.airport | upper}}({{ticket2.flight.destination.code | upper}})</td>
-                    </tr>
-                </table>
-                <hr style="height: .1px; border: 0; background-color: grey;" noshade>
-            </div>
+                <div>
+                    <hr style="height: .1px; border: 0; background-color: grey;" noshade>
+                    <table style="margin-top: 0;" cellspacing='0'>
+                        <tr class="tr-odd">
+                            <th>FLIGHT</th>
+                            <th>DEPART/ARRIVE</th>
+                            <th>AIRPORT/TERMINAL</th>
+                        </tr>
+                        <tr class="tr-even">
+                            <td style="padding-left: 20px; width: 29%;">{{ticket2.flight.airline | upper}}<br>{{ticket2.flight.plane | upper}}</td>
+                            <td style="padding-left: 20px; width: 22%;">{{ticket2.flight_ddate | date:'d M y' | upper}}<br>{{ticket2.flight.depart_time | time:'Hi'}}</td>
+                            <td style="padding-left: 20px; width: 49%;">{{ticket2.flight.origin.airport | upper}} ({{ticket2.flight.origin.code | upper}})</td>
+                        </tr>
+                        <tr class="tr-odd">
+                            <td style="padding-left: 20px; width: 29%;"></td>
+                            <td style="padding-left: 20px; width: 22%;">{{ticket2.flight_adate | date:'d M y' | upper}}<br>{{ticket2.flight.arrival_time | time:'Hi'}}</td>
+                            <td style="padding-left: 20px; width: 49%;">{{ticket2.flight.destination.airport | upper}} ({{ticket2.flight.destination.code | upper}})</td>
+                        </tr>
+                    </table>
+                    <hr style="height: .1px; border: 0; background-color: grey;" noshade>
+                </div>
             {% endif %}
             <!---->
             <table class="table">
@@ -251,8 +232,7 @@
             </table>
         </div>
     </main>
-    <p style="margin: 10px 0; font-size: .8em;">&#169; {{current_year}} GoAnywhere. All rights reserved.</p>
-    30 Kgs Check-in, 7 Kgs Cabin
+    <p style="margin: 10px 0; font-size: .8em;">&#169;	 {{ current_year}} GoAnywhere. All rights reserved.</p>
+        30 Kgs Check-in, 7 Kgs Cabin
 </body>
-
 </html>

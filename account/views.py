@@ -399,7 +399,6 @@ def ticket_data(request, ref):
         'status': ticket.status
     })
 
-
 @csrf_exempt
 def get_ticket(request):
     ref = request.GET.get("ref")
@@ -552,6 +551,7 @@ def addrooms(request):
             form.save()
             return render(request, 'success.html')
 
+                                 
 def addflight(request):
    return render(request, 'flight/addflight.html')
 

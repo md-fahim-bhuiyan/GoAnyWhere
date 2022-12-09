@@ -52,7 +52,6 @@
 
                         <option>Location</option>
                         {% for each_location,each_hotel_id in all_location %}
-
                         <option value={{each_hotel_id}}>{{each_location}}</option>
                         {% endfor %}
 
@@ -61,7 +60,6 @@
 
                 <div class="col-lg-2">
                     <label for="">Check in</label>
-
                     <input class="form-control mr-sm-2" type="date" placeholder="Check in" name="cin" min={{min_date}}
                         max={{max_date}} aria-label="Search" required="True">
                 </div>
@@ -99,8 +97,11 @@
         <thead class="o">
             <tr>
             <th>Type</th>
+            <th>Hotel Name</th>
             <th>Location</th>
+            
             <th>Person</th>
+            <th>Room Number</th>
             <th>Price(৳)</th>
             <th>Action</th>
             </tr>
@@ -109,8 +110,10 @@
         {% for r in rooms %}
         <tr class="">
             <td>{{ r.get_room_type_display }}</td>
+            <td>{{r.hotel.name}}</td>
             <td>{{ r.hotel.location }}</td>
             <td>{{ r.capacity }}</td>
+            <td>{{r.roomnumber}}</td>
             <td>{{ r.price }}</td>
             <td><a href="/user/book-room?roomid={{r.id}}"><button class="btn btn-warning">Book Now</button></a></td>
         </tr>
