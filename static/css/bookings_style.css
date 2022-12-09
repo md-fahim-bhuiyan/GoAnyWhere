@@ -56,7 +56,7 @@ body{
     background-color: orange;
 }
 .btnp:hover, .btnp:focus, .btnp:active{
-    background-color: rgb(246,247,247)!important;
+    background-color: rgb(246,247,247);
 }
 
 .popup{

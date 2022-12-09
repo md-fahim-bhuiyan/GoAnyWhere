@@ -199,20 +199,3 @@ body{
 .search-flight-form-data{
     position: relative;
 }
-
-
-
-
-
-
-::-webkit-scrollbar-track {
-    background: none;
-}
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 5px;
-}

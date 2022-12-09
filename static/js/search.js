@@ -91,7 +91,6 @@ function filter2(element=null) {
         }
         arrival_slot2(flights, start, end);
     }
-    //flights = document.querySelectorAll("#flights_div2 .each-flight-div-box.show");
 }
 
 
@@ -418,19 +417,6 @@ function show_filter() {
         document.querySelector(".query-result-div .filter-div").style.display = 'block';
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function tab_change() {
     var tabs = $('.tabs');
