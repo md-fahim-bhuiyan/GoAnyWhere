@@ -31,5 +31,6 @@ urlpatterns = [
     path('addhotel', views.addhotel,name="addhotel"),
     path('addroom', views.addroom,name="addroom"),
     path('addrooms', views.addrooms,name="addrooms"),
-    path('addflight', views.addflight, name='addflight')
+    path('addflight', views.addflight, name='addflight'),
+    path('addflights', views.addflights, name='addflights')
 ]

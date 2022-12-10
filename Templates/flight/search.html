@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -293,11 +292,6 @@
                                     </center>
                                 </div>
                             </div>
-                            <!-- <div class="close-filter">
-                                <button class="btn btn-danger b2" onclick="close_filter(this)">
-                                    SHOW RESULTS
-                                </button>
-                            </div> -->
                         </div>
                         <div class="col-lg-9 actual-result-div">
                             <div class="sort-div" style="display:none">
@@ -317,8 +311,6 @@
                                     <span></span>
                                 </div>
                             </div>
-
-
                             {% if flights %}
                                 <div class="sort-div">
                                 <div class="flight-company">
@@ -341,10 +333,8 @@
                                 </div>
                             </div>
                             {% endif %}
-
                             <div id="flights_div">
                                 {% for flight in flights %}
-
                                     <div class="each-flight-div-box show">
                                         <div class="each-flight-div" onclick="media_click(this)">
                                             <div class="flight-company">
@@ -390,8 +380,6 @@
                                                     </h5>
                                                 </div>
                                                 <div class="flight-details-btn">
-
-
                                                     {% if trip_type == '2' %}
                                                         {% if forloop.couter == 1 %}checked{% endif %}
                                                         <input type="radio" class="flight1-radio r-b" name="test1" value="{{flight.id}}" data-plane='{{flight.plane}}' data-depart='{{flight.depart_time|time:"H:i"}}' data-arrive='{{flight.arrival_time|time:"H:i"}}' data-fare="{% if seat == 'Economy' %} {{flight.economy_fare}} {% elif seat == 'Business' %} {{flight.business_fare}} {% else %} {{flight.first_fare}} {% endif %}" {% if forloop.counter == 1 %}checked{% endif %}>
@@ -672,14 +660,11 @@
                                                                 </button>
                                                             </form>
                                                         {% endif %}
-
-
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     {% endfor %}
                                 </div>
                             </div>

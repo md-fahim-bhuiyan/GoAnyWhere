@@ -1,90 +1,149 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/layout_style.css' %}">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'js/bookings.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/bookings_style.css' %}">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="{% static 'css/bookings_style.css' %}"> -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            word-wrap: break-word;
+        }
+
+        .each-booking-div {
+            width: 96%;
+            margin: 5px auto 8px auto;
+            transition-duration: .4s;
+            padding: 10px 15px;
+            background-color: #fff;
+            border: 1px solid #e6e6e6;
+            border-radius: 5px;
+        }
+        .green, .red, .orange {
+            border-radius: 3px;
+            color: white;
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: .7em;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .orange {
+            background-color: orange;
+        }
+
+        .btnp:hover,
+        .btnp:focus,
+        .btnp:active {
+            background-color: rgb(205, 235, 235);
+        }
+
+        .ticket-action-div {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    </style>
     <title>Bookings | GoAnywhere</title>
 </head>
+
 <body>
     <section class="section section1">
         <div class="container">
             {% if tickets %}
-                {% for ticket in tickets %}
-                    <div class="row each-booking-div" id="{{ticket.ref_no}}">
-                        <div class="col-2" style="display: flex;">
-                            <div style="display: flex; color: #666666; margin-top: auto;">
-                                <div>
-                                    <span style="font-size: 2.1em;">{{ticket.flight_ddate | date:"d"}}</span>
-                                </div> 
-                                <div style="font-size: smaller; display: flex; margin: auto 0; padding-left: 5px; line-height: 1em;">
-                                    <div style="margin: auto;">
-                                        <div style="margin-bottom: 1px;">{{ticket.flight_ddate | date:"D"}}</div>
-                                        <div style="margin-top: 1px;">{{ticket.flight_ddate | date:"M'y"}}</div>
-                                    </div>
-                                </div>
+            {% for ticket in tickets %}
+            <div class="row each-booking-div" id="{{ticket.ref_no}}">
+                <div class="col-2" style="display: flex;">
+                    <div style="display: flex; color: #666666; margin-top: auto;">
+                        <div>
+                            <span style="font-size: 2.1em;">{{ticket.flight_ddate | date:"d"}}</span>
+                        </div>
+                        <div
+                            style="font-size: smaller; display: flex; margin: auto 0; padding-left: 5px; line-height: 1em;">
+                            <div style="margin: auto;">
+                                <div style="margin-bottom: 1px;">{{ticket.flight_ddate | date:"D"}}</div>
+                                <div style="margin-top: 1px;">{{ticket.flight_ddate | date:"M'y"}}</div>
                             </div>
                         </div>
-                        <div class="col-4 middle-div">
-                            <div style="width:100%">
-                                <div class="row places-div" style=" display: flex;">
-                                    <div style="max-width: 45%;">{{ticket.flight.origin.city}}</div>
-                                    <div>&nbsp;-&nbsp;</div>
-                                    <div style="max-width: 45%;">{{ticket.flight.destination.city}}</div>
-                                </div>
-                                <div class="row places-div" style="font-size: .8em; color: #999999; ">
-                                    <div style="max-width: 100%;">{{ticket.flight.airline}} &middot; {{ticket.flight.plane}} &middot; {{ticket.passengers.count}} Passengers</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2 middle-div">
-                            <div style="font-size: 1.2em; color: #945937;">{{ticket.ref_no}}</div>
-                        </div>
-                        <div class="col-2 middle-div">
-                            <div>
-                                <div class="row status-div">
-                                    {% if ticket.status == 'CONFIRMED' %}
-                                        <div class="green">{{ticket.status}}</div>
-                                    {% endif %}
-                                    {% if ticket.status == 'PENDING' %}
-                                        <div class="orange">{{ticket.status}}</div>
-                                    {% endif %}
-                                    {% if ticket.status == 'CANCELLED' %}
-                                        <div class="red">{{ticket.status}}</div>
-                                    {% endif %}
-                                </div>
-                                <div class="row booking-date-div" style="font-size: .7em; color: #666;">
-                                    {% if ticket.status == 'CONFIRMED' %}
-                                        Booked on: {{ticket.booking_date | date:"D, M d Y"}}
-                                    {% endif %}
-                                    {% if ticket.status == 'PENDING' %}
-                                        Reviewed on: {{ticket.booking_date | date:"D, M d Y"}}
-                                    {% endif %}
-                                    {% if ticket.status == 'CANCELLED' %}
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>                   
-                    </div>
-                {% endfor %}
-            {% else %}
-                <div style="height: 100%; width:100%; padding: 10%;">
-                    <div style="text-align: center; margin: auto;">
-                        <br><br>
-                        <h3>Oops! Looks empty</h3>
-                        <p>
-                            Looks like You don't have any bookings yet.
-                        </p>
                     </div>
                 </div>
+                <div class="col-4 middle-div">
+                    <div style="width:100%">
+                        <div class="row places-div" style=" display: flex;">
+                            <div style="max-width: 45%;">{{ticket.flight.origin.city}}</div>
+                            <div>&nbsp;-&nbsp;</div>
+                            <div style="max-width: 45%;">{{ticket.flight.destination.city}}</div>
+                        </div>
+                        <div class="row places-div" style="font-size: .8em; color: #999999; ">
+                            <div style="max-width: 100%;">{{ticket.flight.airline}} &middot; {{ticket.flight.plane}}
+                                &middot; {{ticket.passengers.count}} Passengers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 middle-div">
+                    <div style="font-size: 1.2em; color: #945937;">{{ticket.ref_no}}</div>
+                </div>
+                <div class="col-2 middle-div">
+                    <div>
+                        <div class="row status-div">
+                            {% if ticket.status == 'CONFIRMED' %}
+                            <div class="green">{{ticket.status}}</div>
+                            {% endif %}
+                            {% if ticket.status == 'PENDING' %}
+                            <div class="orange">{{ticket.status}}</div>
+                            {% endif %}
+                            {% if ticket.status == 'CANCELLED' %}
+                            <div class="red">{{ticket.status}}</div>
+                            {% endif %}
+                        </div>
+                        <div class="row booking-date-div" style="font-size: .7em; color: #666;">
+                            {% if ticket.status == 'CONFIRMED' %}
+                            Booked on: {{ticket.booking_date | date:"D, M d Y"}}
+                            {% endif %}
+                            {% if ticket.status == 'PENDING' %}
+                            Reviewed on: {{ticket.booking_date | date:"D, M d Y"}}
+                            {% endif %}
+                            {% if ticket.status == 'CANCELLED' %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div style="height: 100%; width:100%; padding: 10%;">
+                <div style="text-align: center; margin: auto;">
+                    <br><br>
+                    <h3>Oops! Looks empty</h3>
+                    <p>
+                        Looks like You don't have any bookings yet.
+                    </p>
+                </div>
+            </div>
             {% endif %}
         </div>
     </section>
-     
 </body>
+
 </html>

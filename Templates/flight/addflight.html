@@ -1,7 +1,102 @@
-<input type="text" list="place" placeholder="place" class="form-control">
+<!-- origin = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="departures")
+destination = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="arrivals")
+depart_time = models.TimeField(auto_now=False, auto_now_add=False)
+depart_day = models.ManyToManyField(Week, related_name="flights_of_the_day")
+duration = models.DurationField(null=True)
+arrival_time = models.TimeField(auto_now=False, auto_now_add=False)
+plane = models.CharField(max_length=24)
+airline = models.CharField(max_length=64)
+economy_fare = models.FloatField(null=True)
+business_fare = models.FloatField(null=True)
+first_fare = models.FloatField(null=True) -->
 
-<datalist id="place">
-    {% for place in place %}
-    <option value="{{place.name}}"></option>
-    {%endfor%}
-</datalist>
+
+
+
+<title>Add Flight</title>
+<body>
+ <h1 class="text-center bg-warning my-0">Add Flight</h1>
+    <div class="container">
+        <div class="row">
+                <form action="addflights" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Origin:</label>
+                        <select class="form-control" id="departures" name="departures">
+                            {% for each_airport_name,each_airport_id in airport_name %}
+                            <option value={{each_airport_id}}>{{each_airport_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Destination:</label>
+                        <select class="form-control" id="arrivals" name="arrivals">
+                            {% for each_airport_name,each_airport_id in airport_name %}
+                            <option value={{each_airport_id}}>{{each_airport_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label>Depart time:</label>
+                        <input type="time" class="form-control " id="depart_time" name="depart_time">
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <label>Depart Day:</label>
+                        <input type="checkbox" name="depart_day" id="depart_day" value="sunday">Sunday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="monday">Monday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="tuesday">Tuesday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="wednesday">Wednesday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="thursday">Thursday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="friday">Friday
+                        <input type="checkbox" name="depart_day" id="depart_day" value="sunday">Sunday
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label>Duration Time:</label>
+                        <input type="time" class="form-control " id="duration" name="duration">
+                    </div> -->
+
+                    <div class="form-group">
+                        <label>Arrival Time:</label>
+                        <input type="time" class="form-control " id="arrival_time" name="arrival_time">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Plane:</label>
+                        <input type="text" class="form-control " id="plane" name="plane">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Airline:</label>
+                        <input type="text" class="form-control " id="airline" name="airline">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Economy Fare:</label>
+                        <input type="number" class="form-control " id="economy_fare" name="economy_fare">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Fare</label>
+                        <input type="number" class="form-control " id="business_fare" name="business_fare">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>first_fare:</label>
+                        <input type="number" class="form-control " id="first_fare" name="first_fare">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Flight</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+

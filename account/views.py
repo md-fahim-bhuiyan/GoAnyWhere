@@ -16,7 +16,7 @@ from .models import *
 from GoAnywhere.utils import render_to_pdf, createticket
 from .constant import FEE
 from django.contrib.auth.decorators import login_required
-from .forms import Contact, PlaceF, HotelF,RoomF
+from .forms import Contact, PlaceF, HotelF,RoomF,FlightF
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -553,7 +553,20 @@ def addrooms(request):
 
                                  
 def addflight(request):
-   return render(request, 'flight/addflight.html')
+    airport_name = Place.objects.values_list('airport', 'id').distinct().order_by()
+    day_name = Week.objects.values_list('name', 'id').distinct().order_by()
+    data = {
+        'airport_name': airport_name,
+        'day_name': day_name
+        }
+    return render(request, 'flight/addflight.html',data)
+
+def addflights(request):
+    if request.method == 'POST':
+        form = FlightF(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'success.html')
 
 
 def privacy_policy(request):
