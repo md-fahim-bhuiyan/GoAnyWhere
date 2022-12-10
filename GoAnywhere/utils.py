@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from account.models import *
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime
 from xhtml2pdf import pisa
 from account.constant import FEE
 
@@ -15,8 +15,7 @@ def render_to_pdf(template_src, context_dict={}):
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return None
-
-
+    
 def createticket(user,passengers,passengerscount,flight1,flight_1date,flight_1class,coupon,countrycode,email,mobile):
     ticket = Ticket.objects.create()
     ticket.user = user
